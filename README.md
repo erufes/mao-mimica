@@ -1,5 +1,5 @@
 <h1 align= "center"> ✋ Mão Mímica 🤖 </h1>
-[GitHub branches](https://badgen.net/github/branches/erufes/mao-mimica)](https://github.com/erufes/mao-mimica/)
+[![PyPI pyversions](https://img.shields.io/pypi/pyversions/ansicolortags.svg)](https://pypi.python.org/pypi/ansicolortags/)
 
 <h4 align="center"> 
     :construction:  Projeto em construção  :construction:
