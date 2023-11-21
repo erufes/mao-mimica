@@ -1,8 +1,8 @@
 <h1 align= "center"> ✋ Mão Mímica 🤖 </h1>
 <h4 align="center"> 
     :construction:  Projeto em construção  :construction:
+    
 </h4>
-
 
 [![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/)
 [![PyPI pyversions](https://img.shields.io/pypi/pyversions/ansicolortags.svg)](https://pypi.python.org/pypi/ansicolortags/)
