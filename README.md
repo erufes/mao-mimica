@@ -16,10 +16,10 @@ A movimentação da mão impressa foi realizada em C++.
 
 ## 🔨 Implementações futuras
 Se tratando de um projeto em desenvolvimento, falta implementar:
-- Identificação e interpretação dos movimentos da mão do usuário;
-- Transferencia da interpretação dos movimentos para o arduino;
-- Interpretação da informação coletada e execução do ângulo referente ao que foi solicitado;
-- Desafio, que consiste em fazer um modo de jogo que seria possível jogar Pedra, papel, tesoura, lagarto e Spock contra a mão impressa em 3D. 
+- [ ] Identificação e interpretação dos movimentos da mão do usuário;
+- [ ] Transferencia da interpretação dos movimentos para o arduino;
+- [ ] Interpretação da informação coletada e execução do ângulo referente ao que foi solicitado;
+- [ ] Desafio, que consiste em fazer um modo de jogo que seria possível jogar Pedra, papel, tesoura, lagarto e Spock contra a mão impressa em 3D. 
  
 ## 📌 Pré-requisitos
 `pip install opencv-python`
