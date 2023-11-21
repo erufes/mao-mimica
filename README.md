@@ -3,7 +3,7 @@
     :construction:  Projeto em construção  :construction:
 </h4>
 
-## Descrição do Projeto
+## 📝 Descrição do Projeto
 O projeto consiste em uma mão impressa em 3D que imita os movimentos da mão do usuário apresentada na webCam.
 
 ## 👾 Funcionamento
