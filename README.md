@@ -6,6 +6,13 @@
 ## Descrição do Projeto
 O projeto consiste em uma mão impressa em 3D que imita os movimentos da mão do usuário apresentanda na webCam.
 
+## Funcionamento
+### Software
+Refere a parte da leitura da movimentação da mão do usuário. Essa interpretação dos movimentos foi realizada na linguagem de programção Python, utilizando a biblioteca MediaPipe e OpenCV. Cada dedo da mão impressa tem 
+marcações de cada uma de suas articulaçaões, sendo que usaremos da marcação na ponta do dedo e onde liga o dedo a mão.
+### Hardware
+Consiste na movimentação da mão impressa em 3D. Junto de um arduíno e servo-motores, partindo da interpretação dos movimentos da mão do usuário, é possível saber qual ângulo precisamos girar em cada dedo da mão impressa.
+ 
 ## Pré-requisitos
 `pip install opencv-python`
 
