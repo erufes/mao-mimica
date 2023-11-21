@@ -1,5 +1,5 @@
 <h1 align= "center"> ✋ Mão Mímica 🤖 </h1>
-[![GitHub branches](https://badgen.net/github/branches/Naereen/Strapdown.js)](https://github.com/Naereen/Strapdown.js/)
+[![GitHub branches](https://badgen.net/github.com/erufes/mao-mimica)](https://github.com/erufes/mao-mimica)
 
 <h4 align="center"> 
     :construction:  Projeto em construção  :construction:
