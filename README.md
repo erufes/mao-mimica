@@ -3,7 +3,7 @@
     :construction:  Projeto em construção  :construction:
 </h4>
 
-## 📜 Descrição do Projeto
+## 📝 Descrição do Projeto
 O projeto consiste em uma mão impressa em 3D que imita os movimentos da mão do usuário apresentada na webCam.
 
 ## 👾 Funcionamento
@@ -21,7 +21,7 @@ Se tratando de um projeto em desenvolvimento, falta implementar:
 - Interpretação da informação coletada e execução do ângulo referente ao que foi solicitado;
 - Desafio, que consiste em fazer um modo de jogo que seria possível jogar Pedra, papel, tesoura, lagarto e Spock contra a mão impressa em 3D. 
  
-## Pré-requisitos
+## 📌 Pré-requisitos
 `pip install opencv-python`
 
 `pip install mediapipe`
