@@ -29,8 +29,8 @@ Se tratando de um projeto em desenvolvimento, falta implementar:
 - [ ] Desafio, que consiste em fazer um modo de jogo que seria possível jogar Pedra, papel, tesoura, lagarto e Spock contra a mão impressa em 3D. 
  
 ## 📌 Pré-requisitos
-`pip install opencv-python
-pip install mediapipe`
+`pip install opencv-python`
+`pip install mediapipe`
 
 ## 👩‍💻 Desenvolvedores
 | [<img loading="lazy" src="https://avatars.githubusercontent.com/u/136736744?v=4" width=115><br><sub>Diana Mello Rosi</sub>](https://github.com/dianamross) |  [<img loading="lazy" src="https://avatars.githubusercontent.com/u/136653897?v=4" width=115><br><sub>Elisa Muller Sarmento</sub>](https://github.com/BeWSM) |
