@@ -1,6 +1,6 @@
 <h1 align= "center"> ✋ Mão Mímica 🤖 </h1>
 <h4 align="center"> 
-    :construction:  Projeto em construção  :construction:
+    :construction:  _Projeto em construção_  :construction:
 </h4>
 
 # Descrição do Projeto
