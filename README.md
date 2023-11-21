@@ -9,3 +9,4 @@ O projeto consiste em uma mão impressa em 3D que imita os movimentos da mão do
 ## Pré-requisitos
 
 ## Funcionamento 
+| [<img loading="lazy" src="https://avatars.githubusercontent.com/u/136736744?v=4" width=115><br><sub>Diana Mello Rosi</sub>](https://github.com/dianamross)
