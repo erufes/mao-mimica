@@ -4,7 +4,7 @@
 </h4>
 
 ## Descrição do Projeto
-O projeto consiste em uma mão impressa em 3D que imita os movimentos da mão do usuário apresentanda na webCam.
+O projeto consiste em uma mão impressa em 3D que imita os movimentos da mão do usuário apresentada na webCam.
 
 ## Funcionamento
 ### Software
