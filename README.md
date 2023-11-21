@@ -7,7 +7,7 @@
 O projeto consiste em uma mão impressa em 3D que imita os movimentos da mão do usuário apresentanda na webCam.
 
 ## Pré-requisitos
-
+`pip install opencv-python`
 ## Funcionamento 
 
 ## Desenvolvedores
