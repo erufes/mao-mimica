@@ -40,6 +40,7 @@ funções, pode ser utilizada em diversas linguagens de programação (C++, Pyth
 ### Arduino <img loading="lazy" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/arduino/arduino-original.svg" width="25" height="25"/>
 É uma plataforma programável de prototipagem eletrônica de placa única e hardware livre, que permite aos usuários criar objetos eletrônicos interativos e independentes, usando o microcontrolador Atmel AVR ou ARM com suporte de entrada/saída embutido, uma linguagem de programação padrão, essencialmente C/C++.
 
+
 ## 🔨 Implementações futuras
 Se tratando de um projeto em desenvolvimento, falta implementar:
 - [ ] Identificação e interpretação dos movimentos da mão do usuário;
