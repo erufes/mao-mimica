@@ -26,6 +26,13 @@ marcações de cada uma de suas articulações, sendo que usaremos da marcação
 Consiste na movimentação da mão impressa em 3D. Junto de um arduíno e servo-motores, partindo da interpretação dos movimentos da mão do usuário, é possível saber qual ângulo precisamos girar em cada dedo da mão impressa.
 A movimentação da mão impressa foi realizada em C++.
 
+## 📚 Libs Usadas
+### Open CV
+É uma biblioteca de programação, de código aberto, e inicialmente desenvolvida pela Intel com o objetivo de tornar a visão computacional mais acessível a desenvolvedores e hobistas. Atualmente possui mais de 500 
+funções, pode ser utilizada em diversas linguagens de programação (C++, Python, Ruby, Java…) e é usada para diversos tipos de análise em imagens e vídeos, como  detecção, tracking e reconhecimento facial, edição de fotos e vídeos, detecção e análise de textos, etc. 
+### MediaPipe
+É uma plataforma de código aberto mantida pelo Google, que oferece um conjunto abrangente de ferramentas, APIs e modelos pré-treinados que facilitam a construção de aplicações para tarefas como estimativa de pose, detecção de objetos, reconhecimento facial, entre outras.
+
 ## 🔨 Implementações futuras
 Se tratando de um projeto em desenvolvimento, falta implementar:
 - [ ] Identificação e interpretação dos movimentos da mão do usuário;
