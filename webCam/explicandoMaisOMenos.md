@@ -1,0 +1,13 @@
+vo explicar mais ou menos oq pensei
+
+- primeiro, abre a camera e tudo mais
+- o programa vai tirar uma foto da mao e vai calcular a distancia entre o landmark 0 e a ponta de cada dedo. Ou seja,
+  vai calcular 5 distancias padrao (que é quando a mao ta aberta) e vai igualar como posicao antiga da ponta do dedo já que sempre vamos mostrar a mao aberta no inicio
+- com a foto, ele armazena os tipos de lugar que cada dedo poderia estar. No caso, vamos dividir cada dedo em 5 partes e armazenar a distancia entre a landmark 0
+  e essas 5 coordenadas especificas.
+- vai ter uma verificacao se continua sendo a mesma mao, até porque cada pessoa tem o tamanho dos dedos diferente
+- se ainda for a mesma mao, vai calcular a distancia atual entre a ponta do dedo e a landmark 0. Se for maior que a posicao antiga armazenada, quer dizer que ela mexeu o dedo
+  para cima. Se for menor que a posicao antiga armazenada, quer dizer que ela mexeu o dedo para baixo. Analisando onde a ponta do dedo esta (com as distancias padrao armazenadas) para podermos descobrir quantos graus precisará baixar/aumentar, somamos ou diminuimos o grau do angulo que precisaremos executar no servo motor. É como se cada parte do dedo equivale a um angulo especifico, e se o programa identificar que mexemos o dedo equivalente a duas medidas desse angulo especifico, ele manda o servo motor girar esse angulo 2 vezes.
+- se tiver trocado a mao, vai voltar pro inicio do programa onde ele calcula a distancia padrao de cada dedo.
+
+Por exemplo, eu mexi meu dedo ate a metade (meio termo), que equivale a 2 medidas de angulo se considerarmos que anteriormente esse dedo estava aberto. Essa distancia entre a ponta do dedo (posicao atual da ponta do dedo) e a landmark ta armazenada e o programa vai comparar: A distancia entre a ponta do dedo e a landmark equivale a distancia armazenada do meio do dedo? Se sim, ele vai mexer 2 vezes o grau especificado para baixo ou para cima, dependendo da posicao anterior do dedo. Se for mexer para baixo, é o grau especificado 2 vezes para a direita. Se for mexer para cima, é o grau especificado 2 vezes para a esquerda
