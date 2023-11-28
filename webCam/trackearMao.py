@@ -6,6 +6,9 @@ mpDrawing = mp.solutions.drawing_utils
 mpHands = mp.solutions.hands
 hands = mpHands.Hands(static_image_mode=False, max_num_hands=1, min_detection_confidence=0.5, min_tracking_confidence=0.5)
 
+class DedosDaMao:
+    def _init_(self):
+
 
 #Funcao para calcular a distancia entre dois pontos de uma imagem 2d
 def calcularDistancia(x1, y1, x2, y2):
@@ -55,44 +58,59 @@ while cap.isOpened():
             
     cv2.imshow("MediaPipe Hands", image)
 
-    #Descobrimos o x e o y do ponto zero da mao 
-    pontoZeroX = xCoordenada(0)
-    pontoZeroY = yCoordenada(0)
+    k = cv2.waitKey(10)
+    if k == ord('q') or k == ord('Q') or k == 27:
+        exit(1)
+    elif (k == ord('t')):
+        while True:
+            k = cv2.waitKey(10)
+            if k == ord('q') or k == ord('Q') or k == 27:
+                exit(1)
+            #tirar foto da mao
+            
+            #Descobrimos o x e o y do ponto zero da mao
+            pontoZeroX = xCoordenada(0)
+            pontoZeroY = yCoordenada(0)
 
-    pontoTipPolegarX = xCoordenada(20)
-    pontoTipPolegarY = yCoordenada(20)
+            pontoTipPolegarX = xCoordenada(20)
+            pontoTipPolegarY = yCoordenada(20)
 
-    distanciaPadraoZeroPolegar = calcularDistancia(pontoZeroX, pontoZeroY, pontoTipPolegarX, pontoTipPolegarY)
-    #ai pensei no programa meio que prever quanto de distancia ficaria do ponto zero da mao ate a ponta do mindinho
-    #ai se a distancia calculada for igual a distancia premeditada do dedo no meio termo (nem totalmente aberto nem totalemnte fechado), ele manda mexer o angulo
-    # equivalente a quantidade da distancia calcular.
-    # se calculou que ele mexeu 2 medidas de distancia, ele mexe o angulo especificado 2 vezes (para cima ou para baixo, isso teria q ser fazendo a diferenca entre o ponto zero
-    # e o ponto onde a ponta do dedo esta e pra onde ele deve ir) 
+            distanciaPadraoZeroPolegar = calcularDistancia(pontoZeroX, pontoZeroY, pontoTipPolegarX, pontoTipPolegarY)
+            #ai pensei no programa meio que prever quanto de distancia ficaria do ponto zero da mao ate a ponta do mindinho
+            #ai se a distancia calculada for igual a distancia premeditada do dedo no meio termo (nem totalmente aberto nem totalemnte fechado), ele manda mexer o angulo
+            # equivalente a quantidade da distancia calcular.
+            # se calculou que ele mexeu 2 medidas de distancia, ele mexe o angulo especificado 2 vezes (para cima ou para baixo, isso teria q ser fazendo a diferenca entre o ponto zero
+            # e o ponto onde a ponta do dedo esta e pra onde ele deve ir) 
 
-    distanciaAnteriorZeroPolegar = distanciaPadraoZeroPolegar
+            distanciaAnteriorZeroPolegar = distanciaPadraoZeroPolegar
 
-    while EhMesmaMao:
-        pontoZeroX = xCoordenada(0)
-        pontoZeroY = yCoordenada(0)
+            while True:
+                pontoZeroX = xCoordenada(0)
+                pontoZeroY = yCoordenada(0)
 
-        pontoTipPolegarX = xCoordenada(4)
-        pontoTipPolegarY = yCoordenada(4)
+                pontoTipPolegarX = xCoordenada(4)
+                pontoTipPolegarY = yCoordenada(4)
 
-        distanciaZeroPolegar = calcularDistancia(pontoZeroX, pontoZeroY, pontoTipPolegarX, pontoTipPolegarY)
+                distanciaZeroPolegar = calcularDistancia(pontoZeroX, pontoZeroY, pontoTipPolegarX, pontoTipPolegarY)
 
-        #Se identificar que a distancia padrao esta maior que a calculada, quer dizer que a pessoa baixou o dedo
-        if (distanciaAnteriorZeroPolegar > distanciaZeroPolegar):
-            if (distanciaZeroPolegar == distanciaTipPolegar1):
-                #baixar 36 graus
-            elif (distanciaZeroPolegar == distanciaTipPolegar2):
-                #baixar 36 graus
-                #baixar 36 graus
-        elif (distanciaAnterior < distanciaZeroPolegar):
-            if (distanciaZeroPolegar == distanciaTipPolegar1):
-                #subir 36 graus
-        
-        distanciaAnteriorZeroPolegar = distanciaZeroPolegar
+                #Se identificar que a distancia padrao esta maior que a calculada, quer dizer que a pessoa baixou o dedo
+                if (distanciaAnteriorZeroPolegar > distanciaZeroPolegar):
+                    if (distanciaZeroPolegar == distanciaTipPolegar1):
+                        #baixar 36 graus
+                    elif (distanciaZeroPolegar == distanciaTipPolegar2):
+                        #baixar 36 graus
+                        #baixar 36 graus
+                elif (distanciaAnterior < distanciaZeroPolegar):
+                    if (distanciaZeroPolegar == distanciaTipPolegar1):
+                        #subir 36 graus
+                
+                distanciaAnteriorZeroPolegar = distanciaZeroPolegar
 
-    if cv2.waitKey(5) & 0xFF == 27:
-        break
+                k = cv2.waitKey(10)
+                if k == ord('q') or k == ord('Q') or k == 27:
+                    exit(1)
+                elif (k == ord('t')):
+                    break
+            
+
 cap.release()
