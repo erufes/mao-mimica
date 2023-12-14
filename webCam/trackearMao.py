@@ -105,6 +105,8 @@ while cap.isOpened():
 
                 mao = utils.CalcularDistanciaAtualDedos(mao)
 
+                #ESSA PARTE TD TEM Q FZR UM LOOP FOR COM TDS OS DEDOS
+                
                 #Se identificar que a distancia padrao esta maior que a calculada, quer dizer que a pessoa baixou o dedo
                 if (mao.polegar.distanciaAnteriorZeroTip > mao.polegar.distanciaZeroTip):
                     if (mao.polegar.distanciaZeroTip == mao.polegar.distancia2):
