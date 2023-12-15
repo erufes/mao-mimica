@@ -144,8 +144,8 @@ while cap.isOpened():
                                 movement = {finger.nome: "subir 2 blocos"}
                                 movements.append(movement)
                                 
-                    with open("movements.json", "a") as json_file: 
-                        json.dump(movements, json_file, indent = 4)
+                with open("movements.json", "w") as json_file: 
+                    json.dump(movements, json_file, indent = 4)
                     
                 mao = utils.DefinirDistanciaAnteriorDedos(mao)
 
