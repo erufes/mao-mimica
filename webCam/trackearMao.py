@@ -1,11 +1,13 @@
 import cv2
 import math
+import json
 import mediapipe as mp
 import matplotlib.pyplot as plt
 
 from utils_maoMimica import Utils
 from classeMao import Mao
-
+from classeDedo import Dedo
+movements = []
 mpDrawing = mp.solutions.drawing_utils
 mpHands = mp.solutions.hands
 hands = mpHands.Hands(static_image_mode=False, max_num_hands=1, min_detection_confidence=0.5, min_tracking_confidence=0.5)
@@ -105,30 +107,46 @@ while cap.isOpened():
 
                 mao = utils.CalcularDistanciaAtualDedos(mao)
 
-                #ESSA PARTE TD TEM Q FZR UM LOOP FOR COM TDS OS DEDOS
-                
+                for finger in mao.dedos:
                 #Se identificar que a distancia padrao esta maior que a calculada, quer dizer que a pessoa baixou o dedo
-                if (mao.polegar.distanciaAnteriorZeroTip > mao.polegar.distanciaZeroTip):
-                    if (mao.polegar.distanciaZeroTip == mao.polegar.distancia2):
-                        if (mao.polegar.distanciaAnteriorZeroTip == mao.polegar.distancia1):
-                            #baixar 36 graus 1 vez
-                    elif (mao.polegar.distanciaZeroTip == mao.polegar.distancia3):
-                        if (mao.polegar.distanciaAnteriorZeroTip == mao.polegar.distancia1):
-                            #baixar 36 graus 2 vezes
-                        elif(mao.polegar.distanciaAnteriorZeroTip == mao.polegar.distancia2):
-                            #baixar 36 graus 1 vez
-                elif (mao.polegar.distanciaAnteriorZeroTip < mao.polegar.distanciaZeroTip):
-                    if (mao.polegar.distanciaZeroTip == mao.polegar.distancia1):
-                        if (mao.polegar.distanciaAnteriorZeroTip == mao.polegar.distancia2):
-                            #subir 36 graus 1 vez
-                        elif (mao.polegar.distanciaAnterior.ZeroTip == mao.polegar.distancia3):
-                            #subir 36 graus 2 vezes
-                    elif (mao.polegar.distanciaZeroTip == mao.polegar.distancia2):
-                        if (mao.polegar.distanciaAnteriorZeroTip == mao.polegar.distancia3):
-                            #subir 36 graus 1 vez
-                        elif (mao.polegar.distanciaAnteriorZeroTip == mao.polegar.distancia4):
-                            #subir 36 graus 2 vezes
-                
+                    if (finger.distanciaAnteriorZeroTip > finger.distanciaZeroTip):
+                        if (finger.distanciaZeroTip == finger.distancia2):
+                            if (finger.distanciaAnteriorZeroTip == finger.distancia1):
+                                #baixar 36 graus 1 vez
+                                movement = {finger.nome: "abaixar 1 bloco"}
+                                movements.append(movement)
+                        elif (finger.distanciaZeroTip == finger.distancia3):
+                            if (finger.distanciaAnteriorZeroTip == finger.distancia1):
+                                #baixar 36 graus 2 vezes
+                                movement = {finger.nome: "abaixar 2 blocos"}
+                                movements.append(movement)
+                            elif(finger.distanciaAnteriorZeroTip == finger.distancia2):
+                                #baixar 36 graus 1 vez
+                                movement = {finger.nome: "abaixar 1 bloco"}
+                                movements.append(movement)
+                    elif (finger.distanciaAnteriorZeroTip < finger.distanciaZeroTip):
+                        if (finger.distanciaZeroTip == finger.distancia1):
+                            if (finger.distanciaAnteriorZeroTip == finger.distancia2):
+                                #subir 36 graus 1 vez
+                                movement = {finger.nome: "subir 1 bloco"}
+                                movements.append(movement)
+                            elif (finger.distanciaAnterior.ZeroTip == finger.distancia3):
+                                #subir 36 graus 2 vezes
+                                movement = {finger.nome: "subir 2 blocos"}
+                                movements.append(movement)
+                        elif (finger.distanciaZeroTip == finger.distancia2):
+                            if (finger.distanciaAnteriorZeroTip == finger.distancia3):
+                                #subir 36 graus 1 vez
+                                movement = {finger.nome: "subir 1 bloco"}
+                                movements.append(movement)
+                            elif (finger.distanciaAnteriorZeroTip == finger.distancia4):
+                                #subir 36 graus 2 vezes
+                                movement = {finger.nome: "subir 2 blocos"}
+                                movements.append(movement)
+                                
+                    with open("movements.json", "a") as json_file: 
+                        json.dump(movements, json_file, indent = 4)
+                    
                 mao = utils.DefinirDistanciaAnteriorDedos(mao)
 
                 k = cv2.waitKey(10)
