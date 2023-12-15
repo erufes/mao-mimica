@@ -4,6 +4,7 @@ indicador = Dedo("indicador")
 doMeio = Dedo("meio")
 anelar = Dedo("anelar")
 mindinho = Dedo("mindinho")
+
 class Mao:
     def __init__(self):
         self.dedos = [polegar, indicador, doMeio, anelar, mindinho]

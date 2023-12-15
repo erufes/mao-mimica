@@ -1,19 +1,26 @@
 import cv2
-import math
 import json
 import mediapipe as mp
 import matplotlib.pyplot as plt
 
-from utils_maoMimica import Utils
+import utils_maoMimica as utils
 from classeMao import Mao
 from classeDedo import Dedo
-movements = []
+
+movements = {
+}
+
 mpDrawing = mp.solutions.drawing_utils
 mpHands = mp.solutions.hands
+
+cimaBaixo = 0
+qtdMovimentos = 0
+
 hands = mpHands.Hands(static_image_mode=False, max_num_hands=1, min_detection_confidence=0.5, min_tracking_confidence=0.5)
+handsImage = mpHands.Hands(static_image_mode=True, max_num_hands=1, min_detection_confidence=0.5, min_tracking_confidence=0.5)
 
 #Funcao para o Open CV capturar o video pela camera conectada no USB
-cap = cv2.VideoCapture(1)
+cap = cv2.VideoCapture(0)
 cap.set(3, 720)  # Define a largura do frame
 cap.set(4, 480)  # Define a altura do frame
 
@@ -22,8 +29,6 @@ frame_heigth = 480
 
 #Inicia a mao inteira, classe que tem o ponto zero da mao e os dedos
 mao = Mao()
-#Inicia as funcoes utils_maoMimica
-utils = Utils()
 
 while cap.isOpened():
     sucess, image = cap.read()
@@ -61,31 +66,29 @@ while cap.isOpened():
             k = cv2.waitKey(10)
             if k == ord('q') or k == ord('Q') or k == 27:
                 exit(1)
-            
-            #Agora, setamos o hands para usar uma imagem estatica
-            hands = mpHands.Hands(static_image_mode=True, max_num_hands=1, min_detection_confidence=0.5, min_tracking_confidence=0.5)
-
             #Tiramos foto da mao
+                
             cv2.imwrite("fotoMao.png", image)
             maoImagem = cv2.imread("fotoMao.png")
             plt.figure(figsize = [10, 10])
 
-            results = hands.process(cv2.cvtColor(maoImagem, cv2.COLOR_BGR2RGB))
+            resultsImage = handsImage.process(cv2.cvtColor(maoImagem, cv2.COLOR_BGR2RGB))
             
-            if results.multi_hand_landmarks:
-                for hand_no, hand_landmarks in enumerate(results.multi_hand_landmarks):
+            if resultsImage.multi_hand_landmarks:
+                for hand_no, hand_landmarks in enumerate(resultsImage.multi_hand_landmarks):
                     
                     mpDrawing.draw_landmarks(image = maoImagem, landmark_list = hand_landmarks,
                                             connections = mpHands.HAND_CONNECTIONS)
                 fig = plt.figure(figsize = [10, 10])
 
-            image_height, image_width = maoImagem.shape
+            image_width = maoImagem.shape[1]
+            image_height = maoImagem.shape[0]
 
             #Esse jeito de descobrir a coordenada x e y de cada ponto da mao converte para os centimetros do tamanho da foto 
             mao.pontoZeroX = hand_landmarks.landmark[mpHands.HandLandmark(0).value].x *frame_width
             mao.pontoZeroY = hand_landmarks.landmark[mpHands.HandLandmark(0).value].y *frame_heigth
             
-            mao = utils.DescobrePontosTipDedos(mao, results)
+            mao = utils.DescobrePontosTipDedos(mao, hand_landmarks, mpHands, image_width, image_height)
 
             mao = utils.CalcularDistanciaAtualDedos(mao)
 
@@ -96,56 +99,54 @@ while cap.isOpened():
             mao = utils.DescobrePontosDedosDivididos(mao)
 
             while True:
-                hands = mpHands.Hands(static_image_mode=False, max_num_hands=1, min_detection_confidence=0.5, min_tracking_confidence=0.5)
-                image = cap.read()
-                results = hands.process(image)
-
                 mao.pontoZeroX = hand_landmarks.landmark[mpHands.HandLandmark(0).value].x *image_width
                 mao.pontoZeroY = hand_landmarks.landmark[mpHands.HandLandmark(0).value].y *image_height
 
-                mao = utils.DescobrePontosTipDedos(mao, results)
+                mao = utils.DescobrePontosTipDedos(mao, hand_landmarks, mpHands, image_width, image_height)
 
                 mao = utils.CalcularDistanciaAtualDedos(mao)
 
+                i = 0
                 for finger in mao.dedos:
                 #Se identificar que a distancia padrao esta maior que a calculada, quer dizer que a pessoa baixou o dedo
                     if (finger.distanciaAnteriorZeroTip > finger.distanciaZeroTip):
+                        cimaBaixo = 0
                         if (finger.distanciaZeroTip == finger.distancia2):
                             if (finger.distanciaAnteriorZeroTip == finger.distancia1):
                                 #baixar 36 graus 1 vez
-                                movement = {finger.nome: "abaixar 1 bloco"}
-                                movements.append(movement)
+                                qtdMovimentos = 1
                         elif (finger.distanciaZeroTip == finger.distancia3):
                             if (finger.distanciaAnteriorZeroTip == finger.distancia1):
                                 #baixar 36 graus 2 vezes
-                                movement = {finger.nome: "abaixar 2 blocos"}
-                                movements.append(movement)
+                                qtdMovimentos = 2
                             elif(finger.distanciaAnteriorZeroTip == finger.distancia2):
                                 #baixar 36 graus 1 vez
-                                movement = {finger.nome: "abaixar 1 bloco"}
-                                movements.append(movement)
+                                qtdMovimentos = 1
                     elif (finger.distanciaAnteriorZeroTip < finger.distanciaZeroTip):
+                        cimaBaixo = 1
                         if (finger.distanciaZeroTip == finger.distancia1):
                             if (finger.distanciaAnteriorZeroTip == finger.distancia2):
                                 #subir 36 graus 1 vez
-                                movement = {finger.nome: "subir 1 bloco"}
-                                movements.append(movement)
+                                qtdMovimentos = 1
                             elif (finger.distanciaAnterior.ZeroTip == finger.distancia3):
                                 #subir 36 graus 2 vezes
-                                movement = {finger.nome: "subir 2 blocos"}
-                                movements.append(movement)
+                                qtdMovimentos = 2
                         elif (finger.distanciaZeroTip == finger.distancia2):
                             if (finger.distanciaAnteriorZeroTip == finger.distancia3):
                                 #subir 36 graus 1 vez
-                                movement = {finger.nome: "subir 1 bloco"}
-                                movements.append(movement)
+                                qtdMovimentos = 1
                             elif (finger.distanciaAnteriorZeroTip == finger.distancia4):
                                 #subir 36 graus 2 vezes
-                                movement = {finger.nome: "subir 2 blocos"}
-                                movements.append(movement)
-                                
+                                qtdMovimentos = 2
+                    else:
+                        cimaBaixo = 0
+                        qtdMovimentos = 0
+
+                    movements[finger.nome] = [cimaBaixo, qtdMovimentos]
+                    i = i+1
+        
                 with open("movements.json", "w") as json_file: 
-                    json.dump(movements, json_file, indent = 4)
+                    json.dump(movements, json_file, indent = 2)
                     
                 mao = utils.DefinirDistanciaAnteriorDedos(mao)
 

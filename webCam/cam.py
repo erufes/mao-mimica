@@ -9,7 +9,7 @@ winName = 'Janela de Teste para o SOPT'
 cv2.namedWindow(winName, cv2.WINDOW_AUTOSIZE)
 
 # Posiciona a janela na metade direita do monitor
-cv2.moveWindow(winName, 1300, 0)
+cv2.moveWindow(winName, 0, 1300)
 
 # Abre a webcam para captura de vídeo
 cam = cv2.VideoCapture(0)

@@ -5,89 +5,72 @@ import matplotlib.pyplot as plt
 
 from classeDedo import Dedo
 
-class Utils:
-    def __init__(self):
-            
-        #Funcao para calcular a distancia entre dois pontos de uma imagem 2d
-        def calcularDistancia(x1, y1, x2, y2):
-            distancia = math.sqrt((x2-x1)**2 + (y2-y1)**2)
-            return distancia
+def calcularDistancia(x1, y1, x2, y2):
+    distancia = math.sqrt((x2-x1)**2 + (y2-y1)**2)
+    return distancia
 
-        #Funcao para descobrirmos a coordenada x de um ponto do dedo que especificarmos
-        def xCoordenada(landmark, results):
-            #return hand_landmarks.landmark[mpHands.HandLandmark(landmark).value].x * image_width
-            return float(str(results.multi_hand_landmarks[-1].landmark[int(landmark)]).split('\n')[0].split(" ")[1])
+def xCoordenada(landmark, hand_landmarks, mpHands, image_width):
+    return hand_landmarks.landmark[mpHands.HandLandmark(landmark).value].x * image_width
+    #return float(str(results.multi_hand_landmarks[-1].landmark[landmark]).split('\n')[0].split(" ")[1])
 
-        #Funcao para descobrirmos a coordenada y de um ponto do dedo que especificarmos
-        def yCoordenada(landmark, results):
-            #return hand_landmarks.landmark[mpHands.HandLandmark(landmark).value].y * image_height
-            return float(str(results.multi_hand_landmarks[-1].landmark[int(landmark)]).split('\n')[1].split(" ")[1])
-    
-        def DescobrePontosTip(landmark, results):
-            dedo = Dedo()
-            dedo.pontoTipX = xCoordenada(landmark, results)
-            dedo.pontoTipY = yCoordenada(landmark, results)
+def yCoordenada(landmark, hand_landmarks, mpHands, image_height):
+    return hand_landmarks.landmark[mpHands.HandLandmark(landmark).value].y * image_height
+    #return float(str(results.multi_hand_landmarks[-1].landmark[landmark]).split('\n')[1].split(" ")[1])
 
-            return dedo
+def DescobrePontosTip(dedo, landmark, hand_landmarks, mpHands, image_width, image_height):
+    dedo.pontoTipX = xCoordenada(landmark, hand_landmarks, mpHands, image_width)
+    dedo.pontoTipY = yCoordenada(landmark, hand_landmarks, mpHands, image_height)
 
-        def DescobrePontosTipDedos(mao, results):
+    return dedo
+
+def DescobrePontosTipDedos(mao, hand_landmarks, mpHands, image_width, image_height):
+    for finger in mao.dedos:
+        if finger.nome == 'polegar':
             #Descobre o ponto x e y da ponta do polegar
-            mao.polegar = DescobrePontosTip(4, results)
-
+            finger = DescobrePontosTip(finger, 4, hand_landmarks, mpHands, image_width, image_height)
+        if finger.nome == 'indicador':
             #Descobre o ponto x e y da ponta do indicador
-            mao.indicador = DescobrePontosTip(8, results)
-
+            finger = DescobrePontosTip(finger, 8, hand_landmarks, mpHands, image_width, image_height)
+        if finger.nome == 'meio':
             #Descobre o ponto x e y da ponta do dedo do meio
-            mao.doMeio = DescobrePontosTip(12, results)
-
+            mao.doMeio = DescobrePontosTip(finger, 12, hand_landmarks, mpHands, image_width, image_height)
+        if finger.nome == 'anelar':
             #Descobre o ponto x e y da ponta do dedo anelar
-            mao.anelar = DescobrePontosTip(16, results)
-
+            mao.anelar = DescobrePontosTip(finger, 16, hand_landmarks, mpHands, image_width, image_height)
+        if finger.nome == 'mindinho':   
             #Descobre o ponto x e y da ponta do dedo mindinho
-            mao.mindinho = DescobrePontosTip(20, results)
+            mao.mindinho = DescobrePontosTip(finger, 20, hand_landmarks, mpHands, image_width, image_height)
+    return mao
 
-        def CalcularDistanciaAtualDedos(mao):
-            mao.polegar.distanciaZeroTip = calcularDistancia(mao.pontoZeroX, mao.pontoZeroY, mao.polegar.pontoTipX, mao.polegar.pontoTipY)
-            mao.indicador.distanciaZeroTip = calcularDistancia(mao.pontoZeroX, mao.pontoZeroY, mao.indicador.pontoTipX, mao.indicador.pontoTipY)
-            mao.doMeio.distanciaZeroTip = calcularDistancia(mao.pontoZeroX, mao.pontoZeroY, mao.doMeio.pontoTipX, mao.doMeio.pontoTipY)
-            mao.anelar.distanciaZeroTip = calcularDistancia(mao.pontoZeroX, mao.pontoZeroY, mao.anelar.pontoTipX, mao.anelar.pontoTipY)
-            mao.mindinho.distanciaZeroTip = calcularDistancia(mao.pontoZeroX, mao.pontoZeroY, mao.mindinho.pontoTipX, mao.mindinho.pontoTipY)
+def CalcularDistanciaAtualDedos(mao):
+    for finger in mao.dedos:
+        finger.distanciaZeroTip = calcularDistancia(mao.pontoZeroX, mao.pontoZeroY, finger.pontoTipX, finger.pontoTipY)
+    
+    return mao
 
-            return mao
+def DefinirDistanciaPadraoDedos(mao):
+    for finger in mao.dedos:
+        finger.distanciaPadraoZeroTip = finger.distanciaZeroTip
+    return mao
 
-        def DefinirDistanciaPadraoDedos(mao):
-            mao.polegar.distanciaPadraoZeroTip = mao.polegar.distanciaZeroTip
-            mao.indicador.distanciaPadraoZeroTip = mao.indicador.distanciaZeroTip
-            mao.doMeio.distanciaPadraoZeroTip = mao.doMeio.distanciaZeroTip
-            mao.anelar.distanciaPadraoZeroTip = mao.anelar.distanciaZeroTip
-            mao.mindinho.distanciaPadraoZeroTip = mao.mindinho.distanciaZeroTip
+def DefinirDistanciaAnteriorDedos(mao):
+    for finger in mao.dedos:
+        finger.distanciaAnteriorZeroTip = finger.distanciaZeroTip
+    return mao
 
-            return mao
-        
-        def DefinirDistanciaAnteriorDedos(mao):
-            mao.polegar.distanciaAnteriorZeroTip = mao.polegar.distanciaZeroTip
-            mao.indicador.distanciaAnteriorZeroTip = mao.indicador.distanciaZeroTip
-            mao.doMeio.distanciaAnteriorZeroTip = mao.doMeio.distanciaZeroTip
-            mao.anelar.distanciaAnteriorZeroTip = mao.anelar.distanciaZeroTip
-            mao.mindinho.distanciaAnteriorZeroTip = mao.mindinho.distanciaZeroTip
+def DescobrePontosDedo(dedo, distanciaPadraoZeroTip):
+    dedo.divisaoDedo = distanciaPadraoZeroTip/5
+    dedo.distancia1 = distanciaPadraoZeroTip
+    dedo.distancia2 = distanciaPadraoZeroTip - dedo.divisaoDedo
+    dedo.distancia3 = distanciaPadraoZeroTip - (dedo.divisaoDedo *2)
+    dedo.distancia4 = distanciaPadraoZeroTip - (dedo.divisaoDedo *3)
+    dedo.distancia5 = distanciaPadraoZeroTip - (dedo.divisaoDedo *4)
 
-            return mao
-        
-        def DescobrePontosDedo(dedo, distanciaPadraoZeroTip):
-            dedo.divisaoDedo = distanciaPadraoZeroTip/5
-            dedo.distancia1 = distanciaPadraoZeroTip
-            dedo.distancia2 = distanciaPadraoZeroTip - dedo.DivisaoDedo
-            dedo.distancia3 = distanciaPadraoZeroTip - (dedo.divisaoDedo *2)
-            dedo.distancia4 = distanciaPadraoZeroTip - (dedo.divisaoDedo *3)
-            dedo.distancia5 = distanciaPadraoZeroTip - (dedo.divisaoDedo *4)
+    return dedo
 
-            return dedo
-
-        def DescobrePontosDedosDivididos(mao):
-            mao.polegar = DescobrePontosDedo(mao.polegar, mao.polegar.distanciaPadraoZeroTip)
-            mao.indicador = DescobrePontosDedo(mao.indicador.distanciaPadraoZeroTip)
-            mao.doMeio = DescobrePontosDedo(mao.doMeio.distanciaPadraoZeroTip)
-            mao.anelar = DescobrePontosDedo(mao.anelar.distanciaPadraoZeroTip)
-            mao.mindinho = DescobrePontosDedo(mao.mindinho.distanciaPadraoZeroTip)
-
-            return mao
+def DescobrePontosDedosDivididos(mao):
+    for finger in mao.dedos:
+        finger = DescobrePontosDedo(finger, finger.distanciaPadraoZeroTip)
+    return mao
+           
+            

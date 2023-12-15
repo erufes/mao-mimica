@@ -13,9 +13,9 @@ class Dedo:
         self.pontoTipX = 0
         self.pontoTipY = 0
         
-        parte1dedo = 0
-        parte2dedo = 0
-        parte3dedo = 0
-        parte4dedo = 0
-        parte5dedo = 0 
-        divisaoDedo = 0
+        self.parte1dedo = 0
+        self.parte2dedo = 0
+        self.parte3dedo = 0
+        self.parte4dedo = 0
+        self.parte5dedo = 0 
+        self.divisaoDedo = 0
