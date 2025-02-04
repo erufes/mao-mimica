@@ -48,6 +48,8 @@ Cada dedo precisa estar conectado por fios (usamos linha de pesca por ser mais r
 ## 🔨 Implementações futuras
 Se tratando de um projeto em desenvolvimento, falta implementar:
 - [X] Identificação e interpretação dos movimentos da mão do usuário;
+- [ ] Classe dedo;
+- [ ] Classe mão;
 - [X] Transferencia da interpretação dos movimentos para o arduino;
 - [ ] Interpretação da informação coletada e execução do ângulo referente ao que foi solicitado;
 - [ ] Modo de jogo que seria possível jogar Pedra, papel e tesoura contra a mão impressa em 3D;
