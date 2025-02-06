@@ -60,23 +60,23 @@ int associaAngulo (int detectado) {
   int angulo;
 
   if(detectado == 0) {
-    angulo == 0;
+    angulo = 0;
   }
 
   else if(detectado == 1) {
-    angulo == 45;
+    angulo = 45;
   }
 
   else if (detectado == 2) {
-    angulo == 90;
+    angulo = 90;
   }
 
   else if (detectado == 3) {
-    angulo == 135;
+    angulo = 135;
   }
 
   else {
-    angulo == 180;
+    angulo = 180;
   }
 
   return angulo;
@@ -101,7 +101,7 @@ void loop() {
   servoAnelar.write(angulo);
 
   angulo = associaAngulo(valoresRecebidos[4]);
-  servoMindiinho.write(angulo);
+  servoMindinho.write(angulo);
 
   // if (valoresRecebidos[0] == 1) { servoPolegar.write(180); }        //se a funcao data retornou 1 na posicao da string que representa o polegar, quer dizer que o dedo levanta (ou seja, manda o servo motor rodar 180 graus no sentido antihorario)
   // else { servoPolegar.write(0); }                                   //se retornou 0, quer dizer que o dedo abaixou (ou seja, manda o servo motor rodar 180 graus no sentido horario)
