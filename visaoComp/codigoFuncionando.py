@@ -39,12 +39,11 @@ while True:
                 pontos.append((coordenadaX, coordenadaY))
 
             if pontos:
-                
-                distanciaPolegar = abs(pontos[MINIMO_MCP][PULSO] - pontos[POLEGAR_TIP][PULSO])
-                distanciaIndicador = pontos[INDICADOR_MCP][POLEGAR_CMC] - pontos[INDICADOR_TIP][POLEGAR_CMC]
-                distanciaMedio = pontos[MEDIO_MCP][POLEGAR_CMC] - pontos[MEDIO_TIP][POLEGAR_CMC]
-                distanciaAnelar = pontos[ANELAR_MCP][POLEGAR_CMC] - pontos[ANELAR_TIP][POLEGAR_CMC]
-                distanciaMinimo = pontos[MINIMO_MCP][POLEGAR_CMC] - pontos[MINIMO_TIP][POLEGAR_CMC]
+                distanciaPolegar = abs(pontos[17][0] - pontos[4][0])
+                distanciaIndicador = pontos[5][1] - pontos[8][1]
+                distanciaMedio = pontos[9][1] - pontos[12][1]
+                distanciaAnelar = pontos[13][1] - pontos[16][1]
+                distanciaMinimo = pontos[17][1] - pontos[20][1]
 
                 print("..........................................")
 
