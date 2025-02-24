@@ -51,7 +51,7 @@ Se tratando de um projeto em desenvolvimento, falta implementar:
 - [ ] Classe dedo;
 - [ ] Classe mão;
 - [X] Transferencia da interpretação dos movimentos para o arduino;
-- [ ] Interpretação da informação coletada e execução do ângulo referente ao que foi solicitado;
+- [X] Interpretação da informação coletada e execução do ângulo referente ao que foi solicitado;
 - [ ] Modo de jogo que seria possível jogar Pedra, papel e tesoura contra a mão impressa em 3D;
 - [ ] Menu de seleção se o usuário quer que a mão impressa imite ou se deseja jogar pedra, papel e tesoura;
 - [ ] Mostrar no modo de jogo a pontuação da mão mímica e do usuário.
