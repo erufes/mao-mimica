@@ -12,6 +12,15 @@
 import cv2 as openCv
 import mediapipe
 import json
+import serial
+import time
+
+# Configuracao da porta serial, que é por onde o arduino vai pegar o arquivo
+porta_serial = "/dev/ttyACM0"
+
+baud_rate = 9600
+arduino = serial.Serial(porta_serial, baud_rate)
+time.sleep(2) 
 
 movimentosMao = [0, 0, 0, 0, 0]
 camera = openCv.VideoCapture(0)
@@ -131,6 +140,12 @@ while True:
                     print("MINIMO TOTALMENTE ABERTO")
                     minimo = 4
                 movimentosMao[4] = minimo
+
+                mensagem = f"${''.join(map(str, movimentosMao))}"
+                print(f"Enviando para Arduino: {mensagem}")
+
+                # Enviando para o Arduino via Serial
+                arduino.write(mensagem.encode())
 
                 with open('movimentos.json', 'w') as file:
                     json.dump({"movimentos": movimentosMao}, file)
