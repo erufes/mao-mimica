@@ -3,9 +3,19 @@ import mediapipe
 
 import Dedo
 
-LANDMARKS_MCP = [17, 5, 9, 13, 17]      # Polegar, Indicador, Médio, Anelar, Mínimo
-LANDMARKS_CMC = [0, 1, 2, 3, 4]         # Polegar, Indicador, Médio, Anelar, Mínimo
-LANDMARKS_TIP = [4, 8, 12, 16, 20]      # Polegar, Indicador, Médio, Anelar, Mínimo
+# Array que guarda o estado de cada dedo
+# 0 = totalmente fechado
+# 1 = quase totalmente fechado
+# 2 = meio termo
+# 3 = quase totalmente aberto
+# 4 = totalmente aberto
+estadosDedos = [4, 4, 4, 4, 4]      # Deixa todos os dedos em estado totalmente aberto
+
+
+# Cada posição dos arrays corresponde a um dedo         # Polegar:          Indicador:          Médio:          Anelar:         Mínimo:
+LANDMARKS_MCP = [17, 5, 9, 13, 17]                      # MINIMO_MCP        INDICADOR_MCP       MEDIO_MCP       ANELAR_MCP      MINIMO_MCP 
+LANDMARKS_CMC = [0, 1, 1, 1, 1]                         # PULSO             POLEGAR_CMC         POLEGAR_CMC     POLEGAR_CMC     POLEGAR_CMC
+LANDMARKS_TIP = [4, 8, 12, 16, 20]                      # MINIMO_TIP        INDICADOR_TIP       MEDIO_TIP       ANELAR_TIP      MINIMO_TIP
 
 DISTANCIAS_FECHADO = [70, 10, -10, -20, 0]          # Polegar, Indicador, Médio, Anelar, Mínimo
 DISTANCIAS_QUASE_FECHADO = [100, 50, 10, 10, 30]
@@ -18,14 +28,21 @@ class Mao:
             Dedo(LANDMARKS_MCP[i], LANDMARKS_CMC[i], LANDMARKS_TIP[i], 
                  DISTANCIAS_FECHADO[i], DISTANCIAS_QUASE_FECHADO[i], 
                  DISTANCIAS_MEIO_TERMO[i], DISTANCIAS_QUASE_ABERTO[i])
-            for i in range(5) 
+            for i in range(5)       # O i corresponde a um dedo, por exemplo se i==0 então corresponde ao polegar, assim definindo todas as constantes de cada dedo
         ]
 
-    def determinaDistancia5Dedos(self, pontos):
+    # Percorre todos os dedos para definir a distancia calculada 
+    def determinaDistancia5Dedos(self, pontos):     
         for dedo in range(5):
-            if dedo == 0:
+            if dedo == 0:       # Se for o polegar
                 Dedo.setDistanciaDedo(self.Dedos[dedo], abs(Dedo.determinaDistanciaDedo(self.Dedos[dedo], pontos)))
             else:
                 Dedo.setDistanciaDedo(self.Dedos[dedo], Dedo.determinaDistanciaDedo(self.Dedos[dedo], pontos))
 
+    # 
     def analisarDedosMao(self, pontos):
+        self.determinaDistancia5Dedos(self, pontos)
+        
+        for dedo in range(5):
+            estadosDedos[dedo] = Dedo.determinaEstadoDedo(self.Dedos[dedo])
+        return estadosDedos

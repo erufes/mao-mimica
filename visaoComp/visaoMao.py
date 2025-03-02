@@ -9,15 +9,30 @@
 #( ) fazer funcionar com as classes
 #( ) modo de jogo pedra papel e tesoura (ai precisa de outra listinha)
 
-import classes.Mao
 import cv2 as openCv
 import mediapipe
 import json
+import serial
+import time
 import classes.Mao as Mao
 
-movimentosMao = [0, 0, 0, 0, 0]
-camera = openCv.VideoCapture(0)
 
+# Array que guarda o estado de cada dedo
+# 0 = totalmente fechado
+# 1 = quase totalmente fechado
+# 2 = meio termo
+# 3 = quase totalmente aberto
+# 4 = totalmente aberto
+estadosDedos = [4, 4, 4, 4, 4]      # Deixa todos os dedos em estado totalmente aberto
+
+# Configuracao da porta serial, que é por onde o arduino vai pegar o arquivo
+porta_serial = "/dev/ttyACM0"
+
+baud_rate = 9600
+arduino = serial.Serial(porta_serial, baud_rate)
+time.sleep(2) 
+
+camera = openCv.VideoCapture(0)
 camera.set(3,640)
 camera.set(4,480)
 
@@ -42,104 +57,16 @@ while True:
 
             if pontos:
                 mao = Mao()
-                analisarDedosMao()
-                
-                distanciaPolegar = abs(pontos[MINIMO_MCP][PULSO] - pontos[POLEGAR_TIP][PULSO])
-                distanciaIndicador = pontos[INDICADOR_MCP][POLEGAR_CMC] - pontos[INDICADOR_TIP][POLEGAR_CMC]
-                distanciaMedio = pontos[MEDIO_MCP][POLEGAR_CMC] - pontos[MEDIO_TIP][POLEGAR_CMC]
-                distanciaAnelar = pontos[ANELAR_MCP][POLEGAR_CMC] - pontos[ANELAR_TIP][POLEGAR_CMC]
-                distanciaMinimo = pontos[MINIMO_MCP][POLEGAR_CMC] - pontos[MINIMO_TIP][POLEGAR_CMC]
+                estadosDedos = mao.analisarDedosMao(mao, pontos)
 
-                print("..........................................")
+                mensagem = f"${''.join(map(str, estadosDedos))}"
+                print(f"Enviando para Arduino: {mensagem}")
 
-                if distanciaPolegar <70:
-                    print("POLEGAR TOTALMENTE FECHADO")
-                    polegar = 0
-                elif distanciaPolegar <100:
-                    print("POLEGAR QUASE TOTALMENTE FECHADO")
-                    polegar = 1
-                elif distanciaPolegar <140:
-                    print("POLEGAR MEIO TERMO")
-                    polegar = 2
-                elif distanciaPolegar <180:
-                    print("POLEGAR QUASE TOTALMENTE ABERTO")
-                    polegar = 3
-                else:
-                    print("POLEGAR TOTALMENTE ABERTO")
-                    polegar = 4
-                movimentosMao[0] = polegar
+                # Enviando para o Arduino via Serial
+                arduino.write(mensagem.encode())
 
-                if distanciaIndicador <10:
-                    print("INDICADOR TOTALMENTE FECHADO")
-                    indicador = 0
-                elif distanciaIndicador <50:
-                    print("INDICADOR QUASE TOTALMENTE FECHADO")
-                    indicador = 1
-                elif distanciaIndicador <80:
-                    print("INDICADOR MEIO TERMO")
-                    indicador = 2
-                elif distanciaIndicador <100:
-                    print("INDICADOR QUASE TOTALMENTE ABERTO")
-                    indicador = 3
-                else:
-                    print("INDICADOR TOTALMENTE ABERTO")
-                    indicador = 4
-                movimentosMao[1] = indicador
-
-                if distanciaMedio <-10:
-                    print("MEDIO TOTALMENTE FECHADO")
-                    medio = 0
-                elif distanciaMedio <10:
-                    print("MEIO QUASE TOTALMENTE FECHADO")
-                    medio = 1
-                elif distanciaMedio <60:
-                    print("MEIO MEIO TERMO")
-                    medio = 2
-                elif distanciaMedio <110:
-                    print("MEDIO QUASE TOTALMENTE ABERTO")
-                    medio = 3
-                else:
-                    print("MEDIO TOTALMENTE ABERTO")
-                    medio = 4
-                movimentosMao[2] = medio
-
-                if distanciaAnelar <-20:
-                    print("ANELAR TOTALMENTE FECHADO")
-                    anelar = 0
-                elif distanciaAnelar <10:
-                    print("ANELAR QUASE TOTALMENTE FECHADO")
-                    anelar = 1
-                elif distanciaAnelar <60:
-                    print("ANELAR MEIO TERMO")
-                    anelar = 2
-                elif distanciaAnelar <110:
-                    print("ANELAR QUASE TOTALMENTE ABERTO")
-                    anelar = 3
-                else:
-                    print("ANELAR TOTALMENTE ABERTO")
-                    anelar = 4
-                movimentosMao[3] = anelar
-
-                if distanciaMinimo <0:
-                    print("MINIMO TOTALMENTE FECHADO")
-                    minimo = 0
-                elif distanciaMinimo <30:
-                    print("MINIMO QUASE TOTALMENTE FECHADO")
-                    minimo = 1
-                elif distanciaMinimo <50:
-                    print("MINIMO MEIO TERMO")
-                    minimo = 2
-                elif distanciaMinimo<70:
-                    print("MINIMO QUASE TOTALMENTE ABERTO")
-                    minimo = 3
-                else:
-                    print("MINIMO TOTALMENTE ABERTO")
-                    minimo = 4
-                movimentosMao[4] = minimo
-
-                with open('movimentos.json', 'w') as file:
-                    json.dump({"movimentos": movimentosMao}, file)
-            
+                with open('estados.json', 'w') as file:
+                    json.dump({"estados": estadosDedos}, file)
 
     openCv.imshow('Imagem', imagem)
     openCv.waitKey(1)
