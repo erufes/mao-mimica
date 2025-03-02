@@ -1,13 +1,3 @@
-# LISTA DO QUE PRECISA FAZER (mais ou menos tudo o que precisa)
-#(X) conseguir identificar se todos os dedos estão fechados completamente
-#(X) conseguir mandar para o codigo do arduino (talvez em um arquivo json)
-#( ) ver se o arduino ta recebendo certo
-#(X) conseguir saber a movimentacao exata do dedo (se ta completamente aberto, se ta quase aberto, se ta na metade do movimento, se ta quase fechado, se ta completamente fechado)
-#(X) conseguir o ultimo topico para todos os dedos
-#( ) classe mao
-#( ) classe dedo 
-#( ) fazer funcionar com as classes
-#( ) modo de jogo pedra papel e tesoura (ai precisa de outra listinha)
 
 import cv2 as openCv
 import mediapipe

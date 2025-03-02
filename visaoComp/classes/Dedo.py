@@ -1,11 +1,8 @@
-import cv2 as openCv
-import mediapipe
 
 class Dedo():
     def __init__(self, landmarkMCP, landmarkCMC, landmarkTIP, fechado, 
                  quaseFechado, meioTermo, quaseAberto):
         self.distancia = 0
-        self.movimento = 0
         self.landmarkMCP = landmarkMCP
         self.landmarkCMC = landmarkCMC
         self.landmarkTIP = landmarkTIP
@@ -14,10 +11,6 @@ class Dedo():
         self.meioTermo = meioTermo
         self.quaseAberto = quaseAberto
 
-    # Calcula a distância do dedo
-    def determinaDistanciaDedo(self, pontos):
-        return pontos[self.landmarkMCP][self.landmarkCMC] - pontos[self.landmarkTIP][self.landmarkCMC]
-
     # Funções de determinação
     def setDistanciaDedo(self, distancia):
         self.distancia = distancia
@@ -25,6 +18,11 @@ class Dedo():
     def setMovimento(self, movimento):
         self.movimento = movimento
 
+    # Calcula a distância do dedo
+    def determinaDistanciaDedo(self, pontos):
+        return pontos[self.landmarkMCP][self.landmarkCMC] - pontos[self.landmarkTIP][self.landmarkCMC]
+
+    # Determina o estado do dedo baseado na distancia calculada e nos limites de distancia pré-determinados na função construtora
     def determinaEstadoDedo(self):
         if self.distancia < self.fechado:
             return 0

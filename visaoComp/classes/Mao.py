@@ -1,5 +1,3 @@
-import cv2 as openCv
-import mediapipe
 
 import Dedo
 
@@ -39,7 +37,7 @@ class Mao:
             else:
                 Dedo.setDistanciaDedo(self.Dedos[dedo], Dedo.determinaDistanciaDedo(self.Dedos[dedo], pontos))
 
-    # 
+    # Analisa o estado de cada dedo da mão
     def analisarDedosMao(self, pontos):
         self.determinaDistancia5Dedos(self, pontos)
         

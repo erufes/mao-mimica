@@ -18,7 +18,6 @@ int contador = 0;
 bool contadorStart = false;
 String stringRecebida;
 
-
 void setup() {
   Serial.begin(9600);
   servoPolegar.attach(7);
@@ -27,7 +26,6 @@ void setup() {
   servoAnelar.attach(8);
   servoMindinho.attach(10);
 }
-
 
 void data() {
   while(Serial.available()) {
@@ -68,7 +66,6 @@ int associaAngulo (int detectado) {
 
   return angulo;
 }
-
 
 void loop() {
   data();
