@@ -9,9 +9,11 @@
 #( ) fazer funcionar com as classes
 #( ) modo de jogo pedra papel e tesoura (ai precisa de outra listinha)
 
+import classes.Mao
 import cv2 as openCv
 import mediapipe
 import json
+import classes.Mao as Mao
 
 movimentosMao = [0, 0, 0, 0, 0]
 camera = openCv.VideoCapture(0)
@@ -39,6 +41,8 @@ while True:
                 pontos.append((coordenadaX, coordenadaY))
 
             if pontos:
+                mao = Mao()
+                analisarDedosMao()
                 
                 distanciaPolegar = abs(pontos[MINIMO_MCP][PULSO] - pontos[POLEGAR_TIP][PULSO])
                 distanciaIndicador = pontos[INDICADOR_MCP][POLEGAR_CMC] - pontos[INDICADOR_TIP][POLEGAR_CMC]

@@ -3,57 +3,29 @@ import mediapipe
 
 import Dedo
 
-PULSO = 0
-POLEGAR_CMC = 1
-POLEGAR_TIP = 4
-INDICADOR_MCP = 5
-INDICADOR_TIP = 8
-MEDIO_MCP = 9 
-MEDIO_TIP = 12
-ANELAR_MCP = 13
-ANELAR_TIP = 16
-MINIMO_MCP = 17
-MINIMO_TIP = 20
+LANDMARKS_MCP = [17, 5, 9, 13, 17]      # Polegar, Indicador, Médio, Anelar, Mínimo
+LANDMARKS_CMC = [0, 1, 2, 3, 4]         # Polegar, Indicador, Médio, Anelar, Mínimo
+LANDMARKS_TIP = [4, 8, 12, 16, 20]      # Polegar, Indicador, Médio, Anelar, Mínimo
 
-listaLandmarks1 = [                     #a ideia eh deixar menos feio na funcao de determinar a distancia de todos os dedos fazendo um for que percorre as landmarks ao inves de definir uma a uma (nao sei se fica pior sinceramente) 
-    17,     # landmark MINIMO_MCP       #usando as listas, essa coisa feia que eh tipo um define nao vai mais precisar ficar ali em cima
-    5,      # landmark INDICADOR_MCP
-    9,      # landmark MEDIO_MCP
-    13,     # landmark ANELAR_MCP
-    17,     # landmark MINIMO_MCP
-]
+DISTANCIAS_FECHADO = [70, 10, -10, -20, 0]          # Polegar, Indicador, Médio, Anelar, Mínimo
+DISTANCIAS_QUASE_FECHADO = [100, 50, 10, 10, 30]
+DISTANCIAS_MEIO_TERMO = [140, 80, 60, 60, 50]
+DISTANCIAS_QUASE_ABERTO = [180, 100, 110, 110, 70]
 
-listaLandmarks2 = [
-    0,      # landmark PULSO
-    1,      # landmark POLEGAR_CMC
-    1,      # landmark POLEGAR_CMC
-    1,      # landmark POLEGAR_CMC
-    1,      # landmark POLEGAR_CMC
-]
-
-listaLandmarks3 = [
-    4,      # landmark POLEGAR_TIP
-    8,      # landmark INDICADOR_TIP
-    12,     # landmark MEDIO_TIP
-    16,     # landmark ANELAR_TIP
-    20,     # landmark MINIMO_TIP
-]
-
-class Mao():
+class Mao:
     def __init__(self):
         self.Dedos = [
-            Dedo(),
-            Dedo(),
-            Dedo(),
-            Dedo(),
-            Dedo()
+            Dedo(LANDMARKS_MCP[i], LANDMARKS_CMC[i], LANDMARKS_TIP[i], 
+                 DISTANCIAS_FECHADO[i], DISTANCIAS_QUASE_FECHADO[i], 
+                 DISTANCIAS_MEIO_TERMO[i], DISTANCIAS_QUASE_ABERTO[i])
+            for i in range(5) 
         ]
 
-    def determinaDistancia5Dedos(mao, pontos):
-        setDistanciaDedo(mao.Dedos[0], abs(determinaDistanciaDedo(pontos, MINIMO_MCP, PULSO, POLEGAR_TIP)))
-        setDistanciaDedo(mao.Dedos[1], determinaDistanciaDedo(pontos, MINIMO_MCP, PULSO, POLEGAR_TIP))
-        setDistanciaDedo(mao.Dedos[2], determinaDistanciaDedo(pontos, MINIMO_MCP, PULSO, POLEGAR_TIP))
-        setDistanciaDedo(mao.Dedos[3], determinaDistanciaDedo(pontos, MINIMO_MCP, PULSO, POLEGAR_TIP))
-        setDistanciaDedo(mao.Dedos[4], determinaDistanciaDedo(pontos, MINIMO_MCP, PULSO, POLEGAR_TIP))
-        
-    
+    def determinaDistancia5Dedos(self, pontos):
+        for dedo in range(5):
+            if dedo == 0:
+                Dedo.setDistanciaDedo(self.Dedos[dedo], abs(Dedo.determinaDistanciaDedo(self.Dedos[dedo], pontos)))
+            else:
+                Dedo.setDistanciaDedo(self.Dedos[dedo], Dedo.determinaDistanciaDedo(self.Dedos[dedo], pontos))
+
+    def analisarDedosMao(self, pontos):
