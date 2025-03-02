@@ -21,7 +21,8 @@ DISTANCIAS_MEIO_TERMO = [140, 80, 60, 60, 50]
 DISTANCIAS_QUASE_ABERTO = [180, 100, 110, 110, 70]
 
 class Mao:
-    def __init__(self):
+    def __init__(self, pontos):
+        self.pontos = pontos
         self.Dedos = [
             Dedo(LANDMARKS_MCP[i], LANDMARKS_CMC[i], LANDMARKS_TIP[i], 
                  DISTANCIAS_FECHADO[i], DISTANCIAS_QUASE_FECHADO[i], 
@@ -30,16 +31,16 @@ class Mao:
         ]
 
     # Percorre todos os dedos para definir a distancia calculada 
-    def determinaDistancia5Dedos(self, pontos):     
+    def determinaDistancia5Dedos(self):     
         for dedo in range(5):
             if dedo == 0:       # Se for o polegar
-                Dedo.setDistanciaDedo(self.Dedos[dedo], abs(Dedo.determinaDistanciaDedo(self.Dedos[dedo], pontos)))
+                Dedo.setDistanciaDedo(self.Dedos[dedo], abs(Dedo.determinaDistanciaDedo(self.Dedos[dedo], self.pontos)))
             else:
-                Dedo.setDistanciaDedo(self.Dedos[dedo], Dedo.determinaDistanciaDedo(self.Dedos[dedo], pontos))
+                Dedo.setDistanciaDedo(self.Dedos[dedo], Dedo.determinaDistanciaDedo(self.Dedos[dedo], self.pontos))
 
     # Analisa o estado de cada dedo da mão
-    def analisarDedosMao(self, pontos):
-        self.determinaDistancia5Dedos(self, pontos)
+    def analisarDedosMao(self):
+        self.determinaDistancia5Dedos(self)
         
         for dedo in range(5):
             estadosDedos[dedo] = Dedo.determinaEstadoDedo(self.Dedos[dedo])
