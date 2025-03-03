@@ -1,5 +1,5 @@
 
-import Dedo
+import classes_mao.Dedo as Dedo
 
 # Array que guarda o estado de cada dedo
 # 0 = totalmente fechado

@@ -4,7 +4,13 @@ import mediapipe
 import json
 import serial
 import time
-import classes.Mao as Mao
+
+import classes_mao.Mao as Mao
+import classes_mao.Dedo as Dedo
+
+import classes_menu.Menu as Menu
+import classes_menu.MaoMimica as MaoMimica
+import classes_menu.Jogo as Jogo
 
 # Configuracao da porta serial, que é por onde o arduino vai pegar o arquivo
 porta_serial = "/dev/ttyACM0"
