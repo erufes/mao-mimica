@@ -1,4 +1,8 @@
 
+import random
+import serial
+import time
+
 from classes_visao.Visao import Visao
 
 class Jogo:
@@ -7,6 +11,9 @@ class Jogo:
         self.pontuacaoMao = 0
         self.pontuacaoUsuario = 0
         self.rodadas = 0
+        self.pedra = [0, 0, 0, 0, 0]
+        self.papel = [4, 4, 4, 4, 4]
+        self.tesoura = [0, 4, 4, 0, 0]
 
     def jogar(self):
         print("\n")
@@ -23,10 +30,25 @@ class Jogo:
                     print("3...")
                     print("2...")
                     print("1!")
-                    print("Faça sua jogada")
+                    print("Aperte J para fazer sua jogada")
                     
                     visao = Visao()
                     jogadaUsuario = visao.visaoJogar()
+                    jogadaMaoMimica = random.choice([self.pedra, self.papel, self.tesoura])
+
+                    # Configuracao da porta serial, que é por onde o arduino vai pegar o arquivo
+                    porta_serial = "/dev/ttyACM0"
+
+                    baud_rate = 9600
+                    arduino = serial.Serial(porta_serial, baud_rate)
+                    time.sleep(2) 
+
+                    mensagem = f"${''.join(map(str, jogadaMaoMimica))}"
+                    print(f"Enviando para Arduino: {mensagem}")
+
+                    # Enviando para o Arduino via Serial
+                    arduino.write(mensagem.encode())
+                    
                     #chamar a funcao de visao que identifica o que a pessoa jogou e recebe um array 
                     #fazer a mao mimica escolher um random entre 3 arrays, que sao a possibilidade de jogada
                     #comparar o array recebido com as possibilidades de jogada, identificar o que a pessoa jogou e comparar com a jogada do robo
@@ -36,7 +58,7 @@ class Jogo:
                     print("3...")
                     print("2...")
                     print("1!")
-                    print("Faça sua jogada")
+                    print("Aperte J para fazer sua jogada")
 
                     #faz a mesma coisa de antes
 
@@ -44,7 +66,7 @@ class Jogo:
                     print("3...")
                     print("2...")
                     print("1...")
-                    print("Faça sua jogada")
+                    print("Aperte J para fazer sua jogada")
 
                     # agora compara e ve quem ganhou
                     self.jogar()
