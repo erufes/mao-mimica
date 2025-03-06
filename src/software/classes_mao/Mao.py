@@ -29,6 +29,7 @@ class Mao:
                  DISTANCIAS_MEIO_TERMO[i], DISTANCIAS_QUASE_ABERTO[i])
             for i in range(5)       # O i corresponde a um dedo, por exemplo se i==0 então corresponde ao polegar, assim definindo todas as constantes de cada dedo
         ]
+        
 
     # Percorre todos os dedos para definir a distancia calculada 
     def determinaDistancia5Dedos(self):     
@@ -37,6 +38,7 @@ class Mao:
                 Dedo.setDistanciaDedo(self.Dedos[dedo], abs(Dedo.determinaDistanciaDedo(self.Dedos[dedo], self.pontos)))
             else:
                 Dedo.setDistanciaDedo(self.Dedos[dedo], Dedo.determinaDistanciaDedo(self.Dedos[dedo], self.pontos))
+
 
     # Analisa o estado de cada dedo da mão
     def analisarDedosMao(self):

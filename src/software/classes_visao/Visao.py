@@ -4,18 +4,16 @@ import mediapipe
 import serial
 import time
 from classes_mao.Mao import Mao
-from classes_mao.Dedo import Dedo
 
 class Visao:
     def __init__(self):
-        self.mao = any
-
-    def visaoImitar(self):
         # Configuracao da porta serial, que é por onde o arduino vai pegar o arquivo
-        porta_serial = "/dev/ttyACM0"
+        self.porta_serial = "/dev/ttyACM0"
+        self.baud_rate = 9600
 
-        baud_rate = 9600
-        arduino = serial.Serial(porta_serial, baud_rate)
+    # Função da visão computacional para fazer com que a mão te imite
+    def visaoImitar(self):
+        arduino = serial.Serial(self.porta_serial, self.baud_rate)
         time.sleep(2) 
 
         camera = openCv.VideoCapture(0)
@@ -50,7 +48,6 @@ class Visao:
 
                         # Enviando para o Arduino via Serial
                         arduino.write(mensagem.encode())
-
             openCv.imshow('Imagem', imagem)
             key = openCv.waitKey(1) & 0xFF
 
@@ -62,17 +59,10 @@ class Visao:
                 # Enviando para o Arduino via Serial
                 arduino.write(mensagem.encode())
                 break
-
         openCv.destroyAllWindows()
 
-    def visaoJogar():
-        # Configuracao da porta serial, que é por onde o arduino vai pegar o arquivo
-        porta_serial = "/dev/ttyACM0"
-
-        baud_rate = 9600
-        arduino = serial.Serial(porta_serial, baud_rate)
-        time.sleep(2) 
-
+    # Função da visão computacional para poder jogar pedra, papel ou tesoura
+    def visaoJogar(self):
         camera = openCv.VideoCapture(0)
         camera.set(3,640)
         camera.set(4,480)
@@ -99,12 +89,11 @@ class Visao:
                     if pontos:
                         mao = Mao(pontos)
                         estadosDedos = mao.analisarDedosMao()
-
             openCv.imshow('Imagem', imagem)
             key = openCv.waitKey(1) & 0xFF
 
             if key == ord('j') or key == ord('J') :
                 break
-
         openCv.destroyAllWindows()
         return estadosDedos
+    

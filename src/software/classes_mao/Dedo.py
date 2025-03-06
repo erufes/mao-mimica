@@ -11,6 +11,7 @@ class Dedo():
         self.meioTermo = meioTermo
         self.quaseAberto = quaseAberto
 
+
     # Funções de determinação
     def setDistanciaDedo(self, distancia):
         self.distancia = distancia
@@ -18,9 +19,11 @@ class Dedo():
     def setMovimento(self, movimento):
         self.movimento = movimento
 
+
     # Calcula a distância do dedo
     def determinaDistanciaDedo(self, pontos):
         return pontos[self.landmarkMCP][self.landmarkCMC] - pontos[self.landmarkTIP][self.landmarkCMC]
+
 
     # Determina o estado do dedo baseado na distancia calculada e nos limites de distancia pré-determinados na função construtora
     def determinaEstadoDedo(self):

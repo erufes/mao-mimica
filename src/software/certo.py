@@ -4,7 +4,6 @@ import mediapipe
 import serial
 import time
 from classes_mao.Mao import Mao
-from classes_mao.Dedo import Dedo
 
 # Configuracao da porta serial, que é por onde o arduino vai pegar o arquivo
 porta_serial = "/dev/ttyACM0"
