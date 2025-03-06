@@ -1,4 +1,6 @@
 
+import classes_menu.Menu as Menu
+
 class Jogo:
     def __init__(self, mao, pontos):
         self.mao = mao
@@ -6,7 +8,7 @@ class Jogo:
         self.pontuacaoUsuario = 0
         self.rodadas = 0
 
-    def jogar(self):
+    def jogar(self, menu):
         print("\n")
         print("---------- PEDRA, PAPEL OU TESOURA ----------\n")
         print("Aperte J para começar a partida de 3 rodadas...\n")
