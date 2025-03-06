@@ -1,54 +1,30 @@
 
-import json
-import serial
-import time
-
-import classes_menu.Menu as Menu
-
-# Configuracao da porta serial, que é por onde o arduino vai pegar o arquivo
-porta_serial = "/dev/ttyACM0"
-
-baud_rate = 9600
-arduino = serial.Serial(porta_serial, baud_rate)
-time.sleep(2) 
+from classes_visao.Visao import Visao
 
 class MaoMimica:
-    def __init__(self, mao, pontos):
-        self.mao = mao
+    def __init__(self):
+        self.mao = any
 
-    def imitar(self, menu):
+    def imitar(self):
         print("\n")
-        print("---------- MAO MÍMICA ----------\n")
-        print("Aperte I para fazer com que a mão te imite...\n")
-        print("Aperte M se quer voltar para o menu de seleção\n")
+        print("---------- MAO MÍMICA ----------")
+        print("Insira 1 no terminal para fazer com que a mão te imite;")
+        print("Insira 2 no terminal se quer voltar para o menu de seleção.")
 
-        key = self.openCv.waitKey(0) & 0xFF  # Captura o código ASCII da tecla
+        while(True):
+            try:
+                entradaMaoMimica = int(input())
 
-        if key == ord('I'):
-            print("\nA mão está te imitando! :)\n")
-            print("Aperte M para a mão parar de te imitar e voltar para o menu de seleção.\n")
-
-            estadosDedos = self.mao.analisarDedosMao()
-
-            mensagem = f"${''.join(map(str, estadosDedos))}"
-
-            # Enviando para o Arduino via Serial
-            arduino.write(mensagem.encode())
-
-            with open('estados.json', 'w') as file:
-                json.dump({"estados": estadosDedos}, file)
-            
-            keyMaoMimica = self.openCv.waitKey(0) & 0xFF
-
-            if keyMaoMimica == ord("M"):
-                # abre todos os dedos antes de voltar pro menu
-                estadosDedos = [4, 4, 4, 4, 4]
-                mensagem = f"${''.join(map(str, estadosDedos))}"
-
-                # Enviando para o Arduino via Serial
-                arduino.write(mensagem.encode())
-                menu.abrirMenu()
-        elif key == ord('M'):
-            menu.abrirMenu()
-        else:
-            print("\nTecla inválida. Tente novamente.\n")
+                if entradaMaoMimica == 1:
+                    print("\nA mão está te imitando! :)")
+                    print("Aperte M para a mão parar de te imitar e voltar para o menu da Mão Mímica.")
+                    visao = Visao()
+                    visao.visaoImitar()
+                    self.imitar()
+                elif entradaMaoMimica == 2:
+                    print("Voltando para o menu de seleção.")
+                    break
+                else:
+                    print("Opção inválida. Digite 1 ou 2.")
+            except ValueError:
+                print("Entrada inválida. Digite um número")

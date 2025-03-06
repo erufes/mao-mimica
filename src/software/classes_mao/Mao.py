@@ -1,5 +1,5 @@
 
-import classes_mao.Dedo as Dedo
+from classes_mao.Dedo import Dedo
 
 # Array que guarda o estado de cada dedo
 # 0 = totalmente fechado
@@ -40,7 +40,7 @@ class Mao:
 
     # Analisa o estado de cada dedo da mão
     def analisarDedosMao(self):
-        self.determinaDistancia5Dedos(self)
+        self.determinaDistancia5Dedos()
         
         for dedo in range(5):
             estadosDedos[dedo] = Dedo.determinaEstadoDedo(self.Dedos[dedo])

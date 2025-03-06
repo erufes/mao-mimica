@@ -1,33 +1,57 @@
 
-import classes_menu.Menu as Menu
+from classes_visao.Visao import Visao
 
 class Jogo:
-    def __init__(self, mao, pontos):
-        self.mao = mao
+    def __init__(self):
+        self.mao = any
         self.pontuacaoMao = 0
         self.pontuacaoUsuario = 0
         self.rodadas = 0
 
-    def jogar(self, menu):
+    def jogar(self):
         print("\n")
-        print("---------- PEDRA, PAPEL OU TESOURA ----------\n")
-        print("Aperte J para começar a partida de 3 rodadas...\n")
+        print("---------- PEDRA, PAPEL OU TESOURA ----------")
+        print("Insira 1 no terminal para começar a partida de 3 rodadas;")
+        print("Insira 2 no terminal se quer voltar para o menu de seleção.")
 
-        # esqueci como que bota pra esperar clicar a tecla rs
-        # ai quando apertar ele faz um timer de 3 2 1 
+        while(True):
+            try:
+                entradaJogo = int(input())
 
-        # ai chama random jogada e identificar jogada
-        # se o array dos dois for igual, adiciona 1 ponto na pontuacao dos dois
-        # se o array da mao ganha do array do usuario, adc 1 ponto na pontuacao da mao
+                if entradaJogo == 1:
+                    print("\aA partida vai começar em...")
+                    print("3...")
+                    print("2...")
+                    print("1!")
+                    print("Faça sua jogada")
+                    
+                    visao = Visao()
+                    jogadaUsuario = visao.visaoJogar()
+                    #chamar a funcao de visao que identifica o que a pessoa jogou e recebe um array 
+                    #fazer a mao mimica escolher um random entre 3 arrays, que sao a possibilidade de jogada
+                    #comparar o array recebido com as possibilidades de jogada, identificar o que a pessoa jogou e comparar com a jogada do robo
+                    #dependendo da jogada, ele printa quem pontuou
 
-        # assim vai até ter 3 rodadas
-        # mostra quem ganhou e mostra se deseja jogar outra partida, ir para o menu ou encerrar o programa
-        
-        # se escolher jogar outra partida, reinicia tudo
+                    print("Se prepare para sua pŕoxima jogada em...")
+                    print("3...")
+                    print("2...")
+                    print("1!")
+                    print("Faça sua jogada")
 
+                    #faz a mesma coisa de antes
 
-    def identificarJogada(self):
-        # ele recebe o array com os estados da mao e analisa qual foi jogada
+                    print("Se prepare para sua última jogada em...")
+                    print("3...")
+                    print("2...")
+                    print("1...")
+                    print("Faça sua jogada")
 
-    def randomJogada(self):
-        # um random entre os 3 arrays possiveis é feito e a mao executa um deles mandando por serial (igual quando imita mesmo)
+                    # agora compara e ve quem ganhou
+                    self.jogar()
+                elif entradaJogo == 2:
+                    print("Voltando para o menu de seleção.")
+                    break
+                else:
+                    print("Opção inválida. Digite 1 ou 2.")
+            except ValueError:
+                print("Entrada inválida. Digite um número")

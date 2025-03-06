@@ -1,11 +1,10 @@
 
 import cv2 as openCv
 import mediapipe
-import json
 import serial
 import time
-import classes_mao.Mao as Mao
-import classes_mao.Dedo as Dedo
+from classes_mao.Mao import Mao
+from classes_mao.Dedo import Dedo
 
 # Configuracao da porta serial, que é por onde o arduino vai pegar o arquivo
 porta_serial = "/dev/ttyACM0"
@@ -38,12 +37,8 @@ while True:
                 pontos.append((coordenadaX, coordenadaY))
 
             if pontos:
-                # CODIGO GARANTIA
-                # - implementar para quando clicar uma tecla especifica, abrir todos os dedos e encerrar o programa
-                # - se tudo der errado usando as classes jogo, menu e mao mimica a gente pelo menos vai ter esse que imita e usa as classes de mao e dedo
-    
                 mao = Mao(pontos)
-                estadosDedos = mao.analisarDedosMao(mao)
+                estadosDedos = mao.analisarDedosMao()
 
                 mensagem = f"${''.join(map(str, estadosDedos))}"
                 print(f"Enviando para Arduino: {mensagem}")
@@ -51,8 +46,16 @@ while True:
                 # Enviando para o Arduino via Serial
                 arduino.write(mensagem.encode())
 
-                with open('estados.json', 'w') as file:
-                    json.dump({"estados": estadosDedos}, file)
-
     openCv.imshow('Imagem', imagem)
-    openCv.waitKey(1)
+    key = openCv.waitKey(1) & 0xFF
+
+    if key == ord('f') or key == ord('F') :
+        estadosDedos = [4, 4, 4, 4, 4]
+        mensagem = f"${''.join(map(str, estadosDedos))}"
+        print("Fechando o programa.")
+
+        # Enviando para o Arduino via Serial
+        arduino.write(mensagem.encode())
+        break
+
+openCv.destroyAllWindows()
