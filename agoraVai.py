@@ -3,8 +3,8 @@ import cv2 as openCv
 import time
 import serial
 import mediapipe
-# from classes_mao.Mao import Mao
-# from classes_mao.Dedo import Dedo
+from classes_mao.Mao import Mao
+from classes_mao.Dedo import Dedo
 from tkinter import messagebox
 
 # Configuração da porta serial para o Arduino
@@ -117,11 +117,11 @@ def replicar_movimentos():
                     pontos.append((coordenadaX, coordenadaY))
 
                 if pontos:
-                    # mao = Mao(pontos)
-                    # estadosDedos = mao.analisarDedosMao()
+                    mao = Mao(pontos)
+                    estadosDedos = mao.analisarDedosMao()
 
-                    # mensagem = f"${''.join(map(str, estadosDedos))}"
-                    # print(f"Enviando para Arduino: {mensagem}")
+                    mensagem = f"${''.join(map(str, estadosDedos))}"
+                    print(f"Enviando para Arduino: {mensagem}")
 
                     # Enviando para o Arduino via Serial
                     arduino.write(mensagem.encode())
