@@ -29,7 +29,6 @@ def iniciar_camera(label_resultado, btn_continuar):
         messagebox.showerror("Erro", "Não foi possível acessar a câmera.")
         return
 
-    time.sleep(2)
     vencedor = "Usuário" if placar_usuario <= placar_maquina else "Máquina"
     
     # Atualiza a pontuação
@@ -41,21 +40,22 @@ def iniciar_camera(label_resultado, btn_continuar):
     cap.release()
     openCv.destroyAllWindows()
 
-    label_resultado.config(text=f"Rodada concluída!\n{vencedor} marcou 1 ponto\nUsuário: {placar_usuario} | Máquina: {placar_maquina}")
+    label_resultado.config(text=f"Rodada concluída!\n\n{vencedor} marcou 1 ponto\nUsuário: {placar_usuario} | Máquina: {placar_maquina}", font=("Arial", 26))
     btn_continuar.pack(pady=10)
 
     if placar_usuario == 2 or placar_maquina == 2:
         messagebox.showinfo("Fim de Jogo", f"{vencedor} venceu o melhor de 3!")
         mostrar_menu()  # Volta ao menu principal
 
-def contagem_regressiva(label, segundos, label_resultado, btn_continuar, btn_iniciar):
+def contagem_regressiva(label, segundos, label_resultado, btn_continuar, btn_iniciar, label_instrucao):
     """Faz a contagem regressiva antes de abrir a câmera"""
     btn_iniciar.pack_forget()  # Esconde o botão iniciar
+    label_instrucao.config(text="")  # Remove "Pronto para iniciar?"
     
     if segundos > 0:
         btn_continuar.pack_forget()
-        label.config(text=f"Iniciando em {segundos}...")
-        janela.after(1000, contagem_regressiva, label, segundos - 1, label_resultado, btn_continuar, btn_iniciar)
+        label.config(text=f"Iniciando em {segundos}...", font=("Arial", 26))
+        janela.after(1000, contagem_regressiva, label, segundos - 1, label_resultado, btn_continuar, btn_iniciar, label_instrucao)
     else:
         label.config(text="Captura iniciada!")
         iniciar_camera(label_resultado, btn_continuar)
@@ -79,10 +79,10 @@ def iniciar_jogo():
     label_resultado.pack(pady=5)
 
     btn_continuar = tk.Button(frame_inicio, text="Continuar", font=("Arial", 22), bg="white", fg="black",
-                              command=lambda: contagem_regressiva(label_resultado, 3, label_resultado, btn_continuar, btn_iniciar))
+                              command=lambda: contagem_regressiva(label_resultado, 3, label_resultado, btn_continuar, btn_iniciar, label_instrucao))
 
     btn_iniciar = tk.Button(frame_inicio, text="Iniciar", font=("Arial", 25), bg="white", fg="black",
-                            command=lambda: contagem_regressiva(label_resultado, 3, label_resultado, btn_continuar, btn_iniciar))
+                            command=lambda: contagem_regressiva(label_resultado, 3, label_resultado, btn_continuar, btn_iniciar, label_instrucao))
     btn_iniciar.pack(pady=20)
 
 def replicar_movimentos():
