@@ -53,6 +53,7 @@ def contagem_regressiva(label, segundos, label_resultado, btn_continuar, btn_ini
     btn_iniciar.pack_forget()  # Esconde o botão iniciar
     
     if segundos > 0:
+        btn_continuar.pack_forget()
         label.config(text=f"Iniciando em {segundos}...")
         janela.after(1000, contagem_regressiva, label, segundos - 1, label_resultado, btn_continuar, btn_iniciar)
     else:

@@ -26,7 +26,7 @@ def mostrarMenu(janela):
     btn_imitar.pack(pady=15)  # Espaçamento entre os botões
 
     # Botão "Jogar Pedra, Papel e Tesoura"
-    btn_jogar = tk.Button(frame_menu, text="Jogar Pedra, Papel e Tesoura", command=jogo.jogar, 
+    btn_jogar = tk.Button(frame_menu, text="Jogar Pedra, Papel e Tesoura", command=jogo.menuJogo(janela), 
                         width=25, font=("Arial", 22), bg="white", fg="black")
     btn_jogar.pack(pady=15)
 

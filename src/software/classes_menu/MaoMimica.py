@@ -1,4 +1,11 @@
 
+import tkinter as tk
+import cv2 as openCv
+import time
+import serial
+import mediapipe
+from tkinter import messagebox
+
 from classes_visao.Visao import Visao
 
 class MaoMimica:
@@ -8,7 +15,7 @@ class MaoMimica:
     def imitar(self):
         while(True):
             try:
-                self.printaMenuMaoMimica()
+                messagebox.showinfo("Instrução", "Movimente sua mão para enviar comandos ao Arduino.\nPressione 'E' para encerrar.")
 
                 entradaMaoMimica = int(input())
                 print()
@@ -26,10 +33,3 @@ class MaoMimica:
             except ValueError:
                 print()
                 print("Entrada inválida. Digite um número.\n")
-
-
-    def printaMenuMaoMimica(self):
-        print("---------- MÃO MÍMICA ----------")
-        print("Insira 1 no terminal para fazer com que a mão te imite;")
-        print("Insira 2 no terminal se quer voltar para o menu de seleção.")
-        print()

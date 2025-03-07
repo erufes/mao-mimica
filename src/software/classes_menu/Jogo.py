@@ -1,4 +1,13 @@
 
+import tkinter as tk
+import cv2 as openCv
+import time
+import serial
+import mediapipe
+from classes_mao.Mao import Mao
+from classes_mao.Dedo import Dedo
+from tkinter import messagebox
+
 import random
 import serial
 import time
@@ -20,52 +29,41 @@ class Jogo:
         self.tesoura = np.array([0, 4, 4, 0, 0])
 
 
-    def jogar(self):
+    def jogar(self, janela):
         while(True):
-            try:
-                self.printaMenuJogo()
+            entradaJogo = int(input())
+            print()
 
-                entradaJogo = int(input())
-                print()
+            if entradaJogo == 1:
+                for i in range(3):
+                    self.printaComecoJogada(i)
+                    
+                    visao = Visao()
+                    jogadaUsuario = np.array(visao.visaoJogar())
+                    jogadaMaoMimica = random.choice([self.pedra, self.papel, self.tesoura])
 
-                if entradaJogo == 1:
-                    for i in range(3):
-                        self.printaComecoJogada(i)
-                        
-                        visao = Visao()
-                        jogadaUsuario = np.array(visao.visaoJogar())
-                        jogadaMaoMimica = random.choice([self.pedra, self.papel, self.tesoura])
+                    arduino = serial.Serial(self.porta_serial, self.baud_rate)
+                    time.sleep(2) 
 
-                        arduino = serial.Serial(self.porta_serial, self.baud_rate)
-                        time.sleep(2) 
+                    mensagem = f"${''.join(map(str, jogadaMaoMimica))}"
+                    #print(f"Enviando para Arduino: {mensagem}")
 
-                        mensagem = f"${''.join(map(str, jogadaMaoMimica))}"
-                        print(f"Enviando para Arduino: {mensagem}")
+                    # Enviando para o Arduino via Serial
+                    arduino.write(mensagem.encode())
 
-                        # Enviando para o Arduino via Serial
-                        arduino.write(mensagem.encode())
+                    self.definirQuemPontuou(jogadaMaoMimica, jogadaUsuario)
 
-                        self.definirQuemPontuou(jogadaMaoMimica, jogadaUsuario)
-
-                    if (self.pontuacaoMao > self.pontuacaoUsuario):
-                        print("A Mão Mímica ganhou!")
-                    elif (self.pontuacaoMao < self.pontuacaoUsuario):
-                        print("O usuário ganhou!")
-                    else:
-                        print("Empate!")
-
-                    self.pontuacaoMao = 0
-                    self.pontuacaoUsuario = 0
-
-                    self.jogar()
-                elif entradaJogo == 2:
-                    print("Voltando para o menu de seleção.")
-                    break
+                if (self.pontuacaoMao > self.pontuacaoUsuario):
+                    print("A Mão Mímica ganhou!")
+                elif (self.pontuacaoMao < self.pontuacaoUsuario):
+                    print("O usuário ganhou!")
                 else:
-                    print("Opção inválida. Digite 1 ou 2.\n")
-            except ValueError:
-                print()
-                print("Entrada inválida. Digite um número.\n")
+                    print("Empate!")
+
+                self.pontuacaoMao = 0
+                self.pontuacaoUsuario = 0
+
+                self.jogar()
 
 
     # Pontua quem ganhou a rodada
@@ -112,17 +110,25 @@ class Jogo:
         return np.all(np.abs(array1 - array2) <= tolerancia)
 
     
-    # Funções para imprimir no terminal
-    def printaComecoJogada(self, i):
-        print(f"\nA {i+1}° partida vai começar em...")
-        print("3...")
-        print("2...")
-        print("1!")
-        print("Aperte J para fazer sua jogada")
+    # 
+    def menuJogo(self, janela):
+        for widget in janela.winfo_children():
+                    widget.destroy()
 
-    
-    def printaMenuJogo(self):
-        print("---------- PEDRA, PAPEL E TESOURA ----------")
-        print("Insira 1 no terminal para começar a partida de 3 rodadas;")
-        print("Insira 2 no terminal se quer voltar para o menu de seleção.")
-        print()
+        frame_inicio = tk.Frame(janela, bg="#FFC0CB")
+        frame_inicio.place(relx=0.5, rely=0.5, anchor="center")
+
+        label_instrucao = tk.Label(frame_inicio, text="Pronto para iniciar?", font=("Arial", 36), bg="#FFC0CB")
+        label_instrucao.pack(pady=5)
+
+        label_resultado = tk.Label(frame_inicio, text="", font=("Arial", 22), bg="#FFC0CB")
+        label_resultado.pack(pady=5)
+
+        btn_continuar = tk.Button(frame_inicio, text="Continuar", font=("Arial", 22), bg="white", fg="black",
+                              command=lambda: self.jogar(label_resultado, 3, label_resultado, btn_continuar, btn_iniciar))
+
+        btn_iniciar = tk.Button(frame_inicio, text="Iniciar", font=("Arial", 25), bg="white", fg="black",
+                            command=lambda: self.jogar(label_resultado, 3, label_resultado, btn_continuar, btn_iniciar))
+        btn_iniciar.pack(pady=20)
+
+

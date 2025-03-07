@@ -44,22 +44,23 @@ class Visao:
                         estadosDedos = mao.analisarDedosMao()
 
                         mensagem = f"${''.join(map(str, estadosDedos))}"
-                        print(f"Enviando para Arduino: {mensagem}")
+                        #print(f"Enviando para Arduino: {mensagem}")
 
                         # Enviando para o Arduino via Serial
                         arduino.write(mensagem.encode())
             openCv.imshow('Imagem', imagem)
             key = openCv.waitKey(1) & 0xFF
 
-            if key == ord('m') or key == ord('M') :
+            if key == ord('e') or key == ord('E') :
                 estadosDedos = [4, 4, 4, 4, 4]
                 mensagem = f"${''.join(map(str, estadosDedos))}"
-                print("Retornando para o menu da Mão Mímica.")
 
                 # Enviando para o Arduino via Serial
                 arduino.write(mensagem.encode())
                 break
+        camera.release()
         openCv.destroyAllWindows()
+        messagebox.showinfo("Finalizado", "Movimentos imitados com sucesso!")
 
     # Função da visão computacional para poder jogar pedra, papel ou tesoura
     def visaoJogar(self):

@@ -1,4 +1,11 @@
 
+import tkinter as tk
+import cv2 as openCv
+import time
+import serial
+import mediapipe
+from tkinter import messagebox
+
 from classes_menu.Jogo import Jogo
 from classes_menu.MaoMimica import MaoMimica
 
@@ -21,6 +28,7 @@ while True:
         if entradaMenu == 1:
             maoMimica = MaoMimica()
             maoMimica.imitar()
+            messagebox.showinfo("Instrução", "Movimente sua mão para enviar comandos ao Arduino.\nPressione 'E' para encerrar.")
         elif entradaMenu == 2:
             jogo = Jogo()
             jogo.jogar()
