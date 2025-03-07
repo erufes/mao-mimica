@@ -9,6 +9,8 @@ def printaMenu():
     print("Insira 2 no terminal se quer jogar Pedra, Papel e Tesoura contra a mão;")
     print("Insira 3 no terminal se quer que o programa encerre.\n")
 
+# main do menu integrado
+
 while True:
     try:
         printaMenu()
