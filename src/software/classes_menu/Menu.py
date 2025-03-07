@@ -26,12 +26,12 @@ class Menu:
         label_titulo.pack(pady=20)  # Pequeno espaçamento abaixo do título
 
         # Botão "Imitar movimentos da mão"
-        btn_imitar = tk.Button(frame_menu, text="Imitar movimentos da mão", command=self.maoMimica.imitar, 
+        btn_imitar = tk.Button(frame_menu, text="Imitar movimentos da mão", command=self.mao.imitar, 
                             width=25, font=("Arial", 22), bg="white", fg="black")
         btn_imitar.pack(pady=15)  # Espaçamento entre os botões
 
         # Botão "Jogar Pedra, Papel e Tesoura"
-        btn_jogar = tk.Button(frame_menu, text="Jogar Pedra, Papel e Tesoura", command=self.jogo.menuJogo(self, janela), 
+        btn_jogar = tk.Button(frame_menu, text="Jogar Pedra, Papel e Tesoura", command=lambda: self.jogo.menuJogo(janela), 
                             width=25, font=("Arial", 22), bg="white", fg="black")
         btn_jogar.pack(pady=15)
 

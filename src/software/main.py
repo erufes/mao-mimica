@@ -16,7 +16,7 @@ janela.attributes('-fullscreen', True)  # Ocupa a tela inteira
 janela.configure(bg="#FFC0CB")
 
 # Exibe o menu ao iniciar
-menu.mostrarMenu()
+menu.mostrarMenu(janela)
 
 # Rodando a interface
 janela.mainloop()

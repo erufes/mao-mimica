@@ -6,7 +6,6 @@ import serial
 import mediapipe
 from classes_mao.Mao import Mao
 from classes_mao.Dedo import Dedo
-from classes_menu.Menu import Menu
 
 from tkinter import messagebox
 
@@ -30,7 +29,7 @@ class Jogo:
         self.tesoura = np.array([0, 4, 4, 0, 0])
 
 
-    def jogar(self, menu, janela, label, segundos, label_resultado, btn_continuar, btn_iniciar, label_instrucao):
+    def jogar(self, janela, label, segundos, label_resultado, btn_continuar, btn_iniciar, label_instrucao):
         btn_iniciar.pack_forget()  # Esconde o botão iniciar
         label_instrucao.config(text="")  # Remove "Pronto para iniciar?"
         
@@ -56,7 +55,6 @@ class Jogo:
                 messagebox.showinfo("Fim de Jogo", f"{vencedor} venceu a partida!")
             self.pontuacaoMao = 0
             self.pontuacaoUsuario = 0
-            menu.mostrarMenu()
 
 
     def visaoJogar(self):
