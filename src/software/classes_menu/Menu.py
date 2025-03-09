@@ -11,7 +11,7 @@ from classes_menu.MaoMimica import MaoMimica
 class Menu:
     def __init__(self):
         self.mao = MaoMimica()
-        self.jogo = Jogo()
+        self.jogo = Jogo(self)
 
     def mostrarMenu(self, janela):
         for widget in janela.winfo_children():
@@ -22,7 +22,7 @@ class Menu:
         frame_menu.place(relx=0.5, rely=0.45, anchor="center")  # Centraliza no meio da tela
 
         # Título do menu
-        label_titulo = tk.Label(frame_menu, text="Menu Mão Mímica", font=("Arial", 40), bg="#FFC0CB")
+        label_titulo = tk.Label(frame_menu, text="Mão Mímica", font=("Arial", 40), bg="#FFC0CB")
         label_titulo.pack(pady=20)  # Pequeno espaçamento abaixo do título
 
         # Botão "Imitar movimentos da mão"

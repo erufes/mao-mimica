@@ -46,7 +46,7 @@ class MaoMimica:
                         estadosDedos = mao.analisarDedosMao()
 
                         mensagem = f"${''.join(map(str, estadosDedos))}"
-                        #print(f"Enviando para Arduino: {mensagem}")
+                        print(f"Enviando para Arduino: {mensagem}")
 
                         # Enviando para o Arduino via Serial
                         arduino.write(mensagem.encode())
