@@ -42,6 +42,16 @@ class Jogo:
         else:
             label.config(text="Captura iniciada!")
             self.rodada(label_resultado, btn_continuar)
+
+            encerrar = np.array([4, 4, 4, 4, 4])
+            arduino = serial.Serial(self.porta_serial, self.baud_rate)
+
+            time.sleep(2) 
+
+            mensagem = f"${''.join(map(str, encerrar))}"
+
+            # Enviando para o Arduino via Serial
+            arduino.write(mensagem.encode())
             
             if (self.cont_rodada == 3):
                 if (self.pontuacaoMao < self.pontuacaoUsuario):
@@ -123,6 +133,7 @@ class Jogo:
         else:
             label_resultado.config(text=f"Rodada concluída!\n\n{vencedorRodada} marcou 1 ponto!\nUsuário: {self.pontuacaoUsuario} | Máquina: {self.pontuacaoMao}", font=("Arial", 26))
         print()
+        time.sleep(2)
         btn_continuar.pack(pady=10)
 
 
