@@ -18,33 +18,43 @@
 </h4>
 
 ## 📝 Descrição do Projeto
-O projeto consiste em uma mão impressa em 3D que imita os movimentos da mão do usuário apresentada na webCam.
+O projeto consiste em uma mão impressa em 3D que imita os movimentos da mão do usuário apresentada na webcam, fazendo uso da visão computacional, para identificar os movimentos que a pessoa fez, e de plataformas programáveis e motores para possibilitar a movimentação da mão mímica.
 
 ## 👾 Funcionamento
 ### Software
-Refere-se a parte de leitura da movimentação da mão do usuário. Essa interpretação dos movimentos foi realizada na linguagem de programação Python, utilizando a biblioteca MediaPipe e OpenCV. Cada dedo da mão impressa tem 
-marcações de cada uma de suas articulações, sendo que usaremos da marcação na ponta do dedo e onde liga o dedo a mão.
+Refere-se à parte de leitura da movimentação da mão do usuário. Essa interpretação dos movimentos será realizada na linguagem de programação Python, utilizando a biblioteca MediaPipe e OpenCV. Cada dedo da mão impressa tem marcações de cada uma de suas articulações, e, utilizando das bibliotecas citadas, podemos saber qual dedo está aberto ou fechado.
 ### Hardware
-Consiste na movimentação da mão impressa em 3D. Junto de um arduíno e servo-motores, partindo da interpretação dos movimentos da mão do usuário, é possível saber qual ângulo precisamos girar em cada dedo da mão impressa.
-A movimentação da mão impressa foi realizada em C++.
+Consiste na movimentação da mão impressa em 3D. Junto de um arduino uno e servo motores, partindo da interpretação dos movimentos da mão do usuário, é possível saber qual ângulo precisamos girar em cada dedo da mão impressa. A movimentação da mão impressa será realizada em C++.
 
 ## 📚 Libs Usadas
 ### Open CV <img loading="lazy" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/opencv/opencv-original.svg" width="25" height="25"/>
-É uma biblioteca de programação, de código aberto, e inicialmente desenvolvida pela Intel com o objetivo de tornar a visão computacional mais acessível a desenvolvedores e hobistas. Atualmente possui mais de 500 
-funções, pode ser utilizada em diversas linguagens de programação (C++, Python, Ruby, Java…) e é usada para diversos tipos de análise em imagens e vídeos, como  detecção, tracking e reconhecimento facial, edição de fotos e vídeos, detecção e análise de textos, etc. 
+É uma biblioteca de programação, de código aberto, e inicialmente desenvolvida pela Intel com o objetivo de tornar a visão computacional mais acessível a desenvolvedores e hobistas. Atualmente possui mais de 500 funções, pode ser utilizada em diversas linguagens de programação (C++, Python, Ruby, Java…) e é usada para diversos tipos de análise em imagens e vídeos, como detecção, tracking e reconhecimento facial, edição de fotos e vídeos, detecção e análise de textos, etc. Usaremos para a manipulação da webcam e para a identificação da mão.
 ### MediaPipe <img width="25" heigth="25" src="https://github.com/erufes/mao-mimica/blob/main/forREAD_ME/imagens/mediaPipeLogo.png">
-É uma plataforma de código aberto mantida pelo Google, que oferece um conjunto abrangente de ferramentas, APIs e modelos pré-treinados que facilitam a construção de aplicações para tarefas como estimativa de pose, detecção de objetos, reconhecimento facial, entre outras.
+É uma plataforma de código aberto mantida pelo Google, que oferece um conjunto abrangente de ferramentas, APIs e modelos pré-treinados que facilitam a construção de aplicações para tarefas como estimativa de pose, detecção de objetos, reconhecimento facial, entre outras. Usaremos para identificar cada articulação da mão, sendo possível saber qual dedo está levantado ou abaixado.
 
 ## 🏗️ Estrutura
 ### Arduino <img loading="lazy" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/arduino/arduino-original.svg" width="25" height="25"/>
 É uma plataforma programável de prototipagem eletrônica de placa única e hardware livre, que permite aos usuários criar objetos eletrônicos interativos e independentes, usando o microcontrolador Atmel AVR ou ARM com suporte de entrada/saída embutido, uma linguagem de programação padrão, essencialmente C/C++.
 
+### Modelo da mão 3D InMoov
+O modelo 3D da mão pegamos do InMoov, projeto pessoal do escultor e designer francês Gael Langevin, iniciado em janeiro de 2012 como a primeira mão protética de código aberto. Esse projeto deu origem a iniciativas como Bionico, E-Nable e muitas outras. O InMoov é o primeiro robô em tamanho real impresso em 3D de código aberto. Reproduzível em qualquer impressora 3D doméstica com uma área de 12x12x12 cm, foi concebido como uma plataforma de desenvolvimento para universidades, laboratórios, entusiastas, mas, acima de tudo, para makers. O modelo está disponível no site InMoov Mão e Antebraço.
+
+### WebCam
+Precisaremos da webcam conectada a um computador, ou notebook, para podermos capturar os movimentos da mão do usuário e replicá-los na mão mímica. Usaremos a webcam HD C270 da Logitech.
+
+### Servo Motores
+Cada dedo precisa estar conectado por fios (usamos linha de pesca por ser mais resistente) a um servo-motor para ser capaz de replicar os movimentos captados pela câmera. Vamos usar 5 servo motores MG996R 180° Tower Pro. Eles só são capazes de girar em 180°, que é o necessário para fazer os movimentos de abrir ou fechar os dedos. Na foto ao lado, é possível observar como os motores ficarão dentro do antebraço (não usaremos esses motores que já estão posicionados pois eles têm rotação de 360° e caso extrapolasse o limite estipulado do giro de 180°, provavelmente quebraria o dedo ou estouraria a linha).
+
 ## 🔨 Implementações futuras
 Se tratando de um projeto em desenvolvimento, falta implementar:
-- [ ] Identificação e interpretação dos movimentos da mão do usuário;
-- [ ] Transferencia da interpretação dos movimentos para o arduino;
-- [ ] Interpretação da informação coletada e execução do ângulo referente ao que foi solicitado;
-- [ ] Desafio, que consiste em fazer um modo de jogo que seria possível jogar Pedra, papel, tesoura, lagarto e Spock contra a mão impressa em 3D. 
+- [X] Identificação e interpretação dos movimentos da mão do usuário;
+- [ ] Classe dedo;
+- [ ] Classe mão;
+- [X] Transferencia da interpretação dos movimentos para o arduino;
+- [X] Interpretação da informação coletada e execução do ângulo referente ao que foi solicitado;
+- [ ] Modo de jogo que seria possível jogar Pedra, papel e tesoura contra a mão impressa em 3D;
+- [ ] Menu de seleção se o usuário quer que a mão impressa imite ou se deseja jogar pedra, papel e tesoura;
+- [ ] Mostrar no modo de jogo a pontuação da mão mímica e do usuário.
  
 ## 📌 Pré-requisitos
 ```pip install opencv-python```
@@ -52,5 +62,5 @@ Se tratando de um projeto em desenvolvimento, falta implementar:
 ```pip install mediapipe```
 
 ## 👩‍💻 Desenvolvedoras
-| [<img loading="lazy" src="https://avatars.githubusercontent.com/u/136736744?v=4" width=115><br><sub>Diana Mello Rosi</sub>](https://github.com/dianamross) |  [<img loading="lazy" src="https://avatars.githubusercontent.com/u/136653897?v=4" width=115><br><sub>Elisa Muller Sarmento</sub>](https://github.com/BeWSM) |
-| :---: | :---: |
+| [<img loading="lazy" src="https://avatars.githubusercontent.com/u/136736744?v=4" width=115><br><sub>Diana Mello Rosi</sub>](https://github.com/dianamross) |  [<img loading="lazy" src="https://avatars.githubusercontent.com/u/136653897?v=4" width=115><br><sub>Elisa Muller Sarmento</sub>](https://github.com/BeWSM) |  [<img loading="lazy" src="https://avatars.githubusercontent.com/u/149831641?v=4" width=115><br><sub>Rafaela Capovilla</sub>](https://github.com/rafacpovilla) |  [<img loading="lazy" src="https://avatars.githubusercontent.com/u/149822230?v=4" width=115><br><sub>Rafaela Fernanda</sub>](https://github.com/rafaxxix) |
+| :---: | :---: | :---: | :---: |
