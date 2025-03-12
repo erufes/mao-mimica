@@ -13,10 +13,6 @@
 
 </div>
 
-<h4 align="center"> 
-    :construction:  Projeto em construção  :construction:
-</h4>
-
 ## 📝 Descrição do Projeto
 O projeto consiste em uma mão impressa em 3D que imita os movimentos da mão do usuário apresentada na webcam, fazendo uso da visão computacional, para identificar os movimentos que a pessoa fez, e de plataformas programáveis e motores para possibilitar a movimentação da mão mímica.
 
