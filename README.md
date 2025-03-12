@@ -14,13 +14,17 @@
 </div>
 
 ## 📝 Descrição do Projeto
-O projeto consiste em uma mão impressa em 3D que imita os movimentos da mão do usuário apresentada na webcam, fazendo uso da visão computacional, para identificar os movimentos que a pessoa fez, e de plataformas programáveis e motores para possibilitar a movimentação da mão mímica.
+O projeto consiste em uma mão impressa em 3D e um menu por onde o usuário vai fazer a sua interação com a mão. O menu contém duas opções, sendo que a primeira é a reprodução dos movimentos da mão do usuário, e a segunda é jogar Pedra, Papel e Tesoura contra a mão robótica. Por meio de uma webcam, o programa é capaz de identificar quais dedos o usuário tem aberto ou fechado, sendo possível identificar seus movimentos fazendo uso de visão computacional. Além disso, usa-se também plataformas programáveis e motores para possibilitar a movimentação dos dedos da mão.
+
+### Imitar movimentos ✋
+
+### Jogar Pedra, Papel e Tesoura 🎮
 
 ## 👾 Funcionamento
 ### Software
-Refere-se à parte de leitura da movimentação da mão do usuário. Essa interpretação dos movimentos será realizada na linguagem de programação Python, utilizando a biblioteca MediaPipe e OpenCV. Cada dedo da mão impressa tem marcações de cada uma de suas articulações, e, utilizando das bibliotecas citadas, podemos saber qual dedo está aberto ou fechado.
+Refere-se à parte de leitura da movimentação da mão do usuário. Essa interpretação dos movimentos será realizada na linguagem de programação Python, utilizando as bibliotecas MediaPipe e OpenCV. Cada dedo da mão impressa tem marcações de cada uma de suas articulações e, utilizando das bibliotecas citadas, podemos saber qual dedo está aberto ou fechado.
 ### Hardware
-Consiste na movimentação da mão impressa em 3D. Junto de um arduino uno e servo motores, partindo da interpretação dos movimentos da mão do usuário, é possível saber qual ângulo precisamos girar em cada dedo da mão impressa. A movimentação da mão impressa será realizada em C++.
+Consiste na movimentação da mão impressa em 3D. Junto de um arduino uno e servo motores, partindo da interpretação dos movimentos da mão do usuário, é possível saber qual ângulo precisamos girar em cada dedo da mão impressa. A movimentação da mão impressa é realizada em C++.
 
 ## 📚 Libs Usadas
 ### Open CV <img loading="lazy" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/opencv/opencv-original.svg" width="25" height="25"/>
@@ -39,18 +43,7 @@ O modelo 3D da mão pegamos do InMoov, projeto pessoal do escultor e designer fr
 Precisaremos da webcam conectada a um computador, ou notebook, para podermos capturar os movimentos da mão do usuário e replicá-los na mão mímica. Usaremos a webcam HD C270 da Logitech.
 
 ### Servo Motores
-Cada dedo precisa estar conectado por fios (usamos linha de pesca por ser mais resistente) a um servo-motor para ser capaz de replicar os movimentos captados pela câmera. Vamos usar 5 servo motores MG996R 180° Tower Pro. Eles só são capazes de girar em 180°, que é o necessário para fazer os movimentos de abrir ou fechar os dedos. Na foto ao lado, é possível observar como os motores ficarão dentro do antebraço (não usaremos esses motores que já estão posicionados pois eles têm rotação de 360° e caso extrapolasse o limite estipulado do giro de 180°, provavelmente quebraria o dedo ou estouraria a linha).
-
-## 🔨 Implementações futuras
-Se tratando de um projeto em desenvolvimento, falta implementar:
-- [X] Identificação e interpretação dos movimentos da mão do usuário;
-- [ ] Classe dedo;
-- [ ] Classe mão;
-- [X] Transferencia da interpretação dos movimentos para o arduino;
-- [X] Interpretação da informação coletada e execução do ângulo referente ao que foi solicitado;
-- [ ] Modo de jogo que seria possível jogar Pedra, papel e tesoura contra a mão impressa em 3D;
-- [ ] Menu de seleção se o usuário quer que a mão impressa imite ou se deseja jogar pedra, papel e tesoura;
-- [ ] Mostrar no modo de jogo a pontuação da mão mímica e do usuário.
+Cada dedo precisa estar conectado por fios (usamos linha de pesca por ser mais resistente) a um servo-motor para ser capaz de replicar os movimentos captados pela câmera. Estão sendo usados 5 servo motores MG996R 180° Tower Pro. Eles só são capazes de girar em 180°, que é o necessário para fazer os movimentos de abrir ou fechar os dedos. Na foto abaixo, é possível observar como os motores estão dentro do antebraço.
  
 ## 📌 Pré-requisitos
 ```pip install opencv-python```
