@@ -52,7 +52,7 @@ Precisaremos da webcam conectada a um computador, ou notebook, para podermos cap
 ### Servo Motores
 Cada dedo precisa estar conectado por fios (usamos linha de pesca por ser mais resistente) a um servo-motor para ser capaz de replicar os movimentos captados pela câmera. Estão sendo usados 5 servo motores MG996R 180° Tower Pro. Eles só são capazes de girar em 180°, que é o necessário para fazer os movimentos de abrir ou fechar os dedos. Na foto abaixo, é possível observar como os motores estão dentro do antebraço. Abaixo temos a imagem da esquerda que mostra como os servo motores ficam na estrutura interna do antebraço.
 
-<img width="100" heigth="100" src="https://github.com/erufes/mao-mimica/blob/main/forREAD_ME/imagens/antebraco.png"> <img width="200" heigth="200" src="https://github.com/erufes/mao-mimica/blob/main/forREAD_ME/imagens/servoMotor.png">
+<img width="110" heigth="110" src="https://github.com/erufes/mao-mimica/blob/main/forREAD_ME/imagens/antebraco.png"> <img width="200" heigth="200" src="https://github.com/erufes/mao-mimica/blob/main/forREAD_ME/imagens/servoMotor.png">
  
 ## 📌 Pré-requisitos
 ```pip install opencv-python```
