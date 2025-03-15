@@ -41,6 +41,8 @@ Consiste na movimentação da mão impressa em 3D. Junto de um arduino uno e ser
 ### Arduino <img loading="lazy" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/arduino/arduino-original.svg" width="25" height="25"/>
 É uma plataforma programável de prototipagem eletrônica de placa única e hardware livre, que permite aos usuários criar objetos eletrônicos interativos e independentes, usando o microcontrolador Atmel AVR ou ARM com suporte de entrada/saída embutido, uma linguagem de programação padrão, essencialmente C/C++.
 
+<img width="150" heigth="150" src="https://github.com/erufes/mao-mimica/blob/main/forREAD_ME/imagens/arduino.png">
+
 ### Modelo da mão 3D InMoov
 O modelo 3D da mão pegamos do InMoov, projeto pessoal do escultor e designer francês Gael Langevin, iniciado em janeiro de 2012 como a primeira mão protética de código aberto. Esse projeto deu origem a iniciativas como Bionico, E-Nable e muitas outras. O InMoov é o primeiro robô em tamanho real impresso em 3D de código aberto. Reproduzível em qualquer impressora 3D doméstica com uma área de 12x12x12 cm, foi concebido como uma plataforma de desenvolvimento para universidades, laboratórios, entusiastas, mas, acima de tudo, para makers. O modelo está disponível no site InMoov Mão e Antebraço.
 
@@ -49,6 +51,8 @@ Precisaremos da webcam conectada a um computador, ou notebook, para podermos cap
 
 ### Servo Motores
 Cada dedo precisa estar conectado por fios (usamos linha de pesca por ser mais resistente) a um servo-motor para ser capaz de replicar os movimentos captados pela câmera. Estão sendo usados 5 servo motores MG996R 180° Tower Pro. Eles só são capazes de girar em 180°, que é o necessário para fazer os movimentos de abrir ou fechar os dedos. Na foto abaixo, é possível observar como os motores estão dentro do antebraço.
+
+<img width="150" heigth="150" src="https://github.com/erufes/mao-mimica/blob/main/forREAD_ME/imagens/servoMotor.png">
  
 ## 📌 Pré-requisitos
 ```pip install opencv-python```
