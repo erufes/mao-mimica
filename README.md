@@ -19,8 +19,10 @@ O projeto consiste em uma mão impressa em 3D e um menu por onde o usuário vai 
 <img width="125" heigth="125" src="https://github.com/erufes/mao-mimica/blob/main/forREAD_ME/imagens/maoFrente.png"> <img width="100" heigth="100" src="https://github.com/erufes/mao-mimica/blob/main/forREAD_ME/imagens/maoAntebraco.png"> <img width="125" heigth="125" src="https://github.com/erufes/mao-mimica/blob/main/forREAD_ME/imagens/maoCosta.png">
 
 ### Imitar movimentos ✋
-
+A partir da visão computacional, é possível reconhecer os movimentos que o usuário faz em frente a webcam, sendo que são pré-determinados 5 estados para cada dedo: totalmente fechado, quase totalmente fechado, meio termo, quase totalmente aberto e totalmente aberto. Portanto, também são pré-determinados 4 ângulos que são responsáveis pelo servo motor mudar de um estado do dedo para outro. Em uma lista de 5 posições, em quê cada posição representa um dedo, o programa define qual estado cada dedo está e manda essa lista para o arduino. No arduino tem um código que recebe essa lista de estados e identifica quantos ângulos precisa girar em cada servo motor. Dessa forma, a mão robótica consegue imitar os movimentos da mão do usuário.
+ 
 ### Jogar Pedra, Papel e Tesoura 🎮
+O modo de jogo segue quase a mesma lógica para imitar os movimentos da mão do usuário, sendo que são pré-determinados três movimentos possíveis do usuário: pedra (que a lista seria 0, 0, 0, 0, 0), papel (4, 4, 4, 4, 4) e tesoura (0, 4, 4, 0, 0). Assim, o programa identifica qual foi a jogada do usuário, sendo que foi implementada
 
 ## 👾 Funcionamento
 ### Software
