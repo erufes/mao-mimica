@@ -50,9 +50,9 @@ O modelo 3D da mão pegamos do InMoov, projeto pessoal do escultor e designer fr
 Precisaremos da webcam conectada a um computador, ou notebook, para podermos capturar os movimentos da mão do usuário e replicá-los na mão mímica. Usaremos a webcam HD C270 da Logitech.
 
 ### Servo Motores
-Cada dedo precisa estar conectado por fios (usamos linha de pesca por ser mais resistente) a um servo-motor para ser capaz de replicar os movimentos captados pela câmera. Estão sendo usados 5 servo motores MG996R 180° Tower Pro. Eles só são capazes de girar em 180°, que é o necessário para fazer os movimentos de abrir ou fechar os dedos. Na foto abaixo, é possível observar como os motores estão dentro do antebraço. Abaixo temos a imagem da direita que mostra como os servo motores ficam na estrutura interna do antebraço.
+Cada dedo precisa estar conectado por fios (usamos linha de pesca por ser mais resistente) a um servo-motor para ser capaz de replicar os movimentos captados pela câmera. Estão sendo usados 5 servo motores MG996R 180° Tower Pro. Eles só são capazes de girar em 180°, que é o necessário para fazer os movimentos de abrir ou fechar os dedos. Na foto abaixo, é possível observar como os motores estão dentro do antebraço. Abaixo temos a imagem da esquerda que mostra como os servo motores ficam na estrutura interna do antebraço.
 
-<img width="200" heigth="200" src="https://github.com/erufes/mao-mimica/blob/main/forREAD_ME/imagens/servoMotor.png">  <img width="125" heigth="125" src="https://github.com/erufes/mao-mimica/blob/main/forREAD_ME/imagens/antebraco.png">
+<img width="125" heigth="125" src="https://github.com/erufes/mao-mimica/blob/main/forREAD_ME/imagens/antebraco.png"> <img width="200" heigth="200" src="https://github.com/erufes/mao-mimica/blob/main/forREAD_ME/imagens/servoMotor.png">
  
 ## 📌 Pré-requisitos
 ```pip install opencv-python```
