@@ -41,7 +41,7 @@ Consiste na movimentação da mão impressa em 3D. Junto de um arduino uno e ser
 ### Arduino <img loading="lazy" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/arduino/arduino-original.svg" width="25" height="25"/>
 É uma plataforma programável de prototipagem eletrônica de placa única e hardware livre, que permite aos usuários criar objetos eletrônicos interativos e independentes, usando o microcontrolador Atmel AVR ou ARM com suporte de entrada/saída embutido, uma linguagem de programação padrão, essencialmente C/C++.
 
-<img width="150" heigth="150" src="https://github.com/erufes/mao-mimica/blob/main/forREAD_ME/imagens/arduino.png">
+<img width="150" heigth="150" src="https://github.com/erufes/mao-mimica/blob/main/forREAD_ME/imagens/arduinoUno.png">
 
 ### Modelo da mão 3D InMoov
 O modelo 3D da mão pegamos do InMoov, projeto pessoal do escultor e designer francês Gael Langevin, iniciado em janeiro de 2012 como a primeira mão protética de código aberto. Esse projeto deu origem a iniciativas como Bionico, E-Nable e muitas outras. O InMoov é o primeiro robô em tamanho real impresso em 3D de código aberto. Reproduzível em qualquer impressora 3D doméstica com uma área de 12x12x12 cm, foi concebido como uma plataforma de desenvolvimento para universidades, laboratórios, entusiastas, mas, acima de tudo, para makers. O modelo está disponível no site InMoov Mão e Antebraço.
