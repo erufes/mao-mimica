@@ -30,6 +30,7 @@ Refere-se à parte de leitura da movimentação da mão do usuário. Essa interp
 
 ### Hardware
 Consiste na movimentação da mão impressa em 3D. Junto de um arduino uno e servo motores, partindo da interpretação dos movimentos da mão do usuário, é possível saber qual ângulo precisamos girar em cada dedo da mão impressa. A movimentação da mão impressa é realizada em C++. Na imagem abaixo mostra como os servo motores ficam na estrutura interna do antebraço.
+
 <img width="110" heigth="110" src="https://github.com/erufes/mao-mimica/blob/main/forREAD_ME/imagens/antebraco.png">
 
 ## 📚 Libs Usadas
