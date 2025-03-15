@@ -16,7 +16,7 @@
 ## 📝 Descrição do Projeto
 O projeto consiste em uma mão impressa em 3D e um menu por onde o usuário vai fazer a sua interação com a mão. O menu contém duas opções, sendo que a primeira é a reprodução dos movimentos da mão do usuário, e a segunda é jogar Pedra, Papel e Tesoura contra a mão robótica. Por meio de uma webcam, o programa é capaz de identificar quais dedos o usuário tem aberto ou fechado, sendo possível identificar seus movimentos fazendo uso de visão computacional. Além disso, usa-se também plataformas programáveis e motores para possibilitar a movimentação dos dedos da mão.
 
-<img width="500" heigth="500" src="https://github.com/erufes/mao-mimica/blob/main/forREAD_ME/imagens/mao.png">
+<img width="500" heigth="500" src="https://github.com/erufes/mao-mimica/blob/main/forREAD_ME/imagens/maoFrente.png">
 
 ### Imitar movimentos ✋
 
