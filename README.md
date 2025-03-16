@@ -66,6 +66,8 @@ Cada dedo precisa estar conectado por fios (foi usada linha de pesca por ser mai
 ```pip install pyserial```
 
 ## ☝️🤓 Instruções
+Para configurar e executar o projeto, siga as etapas abaixo:
+
 - As bibliotecas mencionadas no tópico anterior devem ser instaladas via terminal. Certifique-se de que o Python já está instalado na máquina.
 - O arquivo `main.cpp`, localizado na pasta `src/hardware`, deve ser carregado no Arduino. Para isso, utilize o Arduino IDE. Durante o processo, é necessário instalar a biblioteca `Servo.h` diretamente pelo gerenciador de bibliotecas do Arduino IDE.
 - Nos arquivos `Jogo.py` e `MaoMimica.py`, insira na linha 20 e 13, respectivamente, a porta serial em que o Arduino está conectado ao computador. A porta serial pode ser identificada ao enviar o código `main.cpp` para o Arduino pelo Arduino IDE.
