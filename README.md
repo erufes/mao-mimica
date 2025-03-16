@@ -65,9 +65,9 @@ Cada dedo precisa estar conectado por fios (foi usada linha de pesca por ser mai
 
 ```pip install pyserial```
 
-Os arquivos STL utilizados para a impressão 3D estão organizados na pasta `arquivosStl`. Dentro dessa pasta, há duas subpastas:
-- Na pasta `arquivosStl/caixa`, estão os arquivos referentes à caixa suporte, que abriga o Arduino e a protoboard.
-- Na pasta `arquivosStl/mao`, estão os arquivos relacionados à mão robótica.
+Os arquivos STL utilizados para a impressão 3D estão organizados na pasta `arquivosSTL`. Dentro dessa pasta, há duas subpastas:
+- Na pasta `arquivosSTL/caixa`, estão os arquivos referentes à caixa suporte, que abriga o Arduino e a protoboard.
+- Na pasta `arquivosSTL/mao`, estão os arquivos relacionados à mão robótica.
 
 ## ☝️🤓 Instruções
 Para configurar e executar o projeto, siga as etapas abaixo:
