@@ -26,7 +26,7 @@ O modo de jogo funciona com uma lógica semelhante à de imitar os movimentos da
 
 ## 👾 Funcionamento
 ### Software
-Refere-se à parte de leitura da movimentação da mão do usuário. Essa interpretação dos movimentos será realizada na linguagem de programação Python, utilizando as bibliotecas MediaPipe e OpenCV. Cada dedo da mão impressa tem marcações de cada uma de suas articulações e, utilizando das bibliotecas citadas, podemos saber qual dedo está aberto ou fechado.
+Refere-se à parte de leitura da movimentação da mão do usuário. Essa interpretação dos movimentos é realizada na linguagem de programação Python, utilizando as bibliotecas MediaPipe e OpenCV. Cada dedo da mão impressa tem marcações de cada uma de suas articulações e, utilizando das bibliotecas citadas, podemos saber qual dedo está aberto ou fechado.
 
 <img width="500" heigth="500" src="https://github.com/erufes/mao-mimica/blob/main/forREAD_ME/imagens/hand_landmarks.png">
 
