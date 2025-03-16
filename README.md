@@ -26,7 +26,7 @@ O modo de jogo funciona com uma lógica semelhante à de imitar os movimentos da
 
 ## 👾 Funcionamento
 ### Software
-Refere-se à parte de leitura da movimentação da mão do usuário. Essa interpretação dos movimentos é realizada na linguagem de programação Python, utilizando as bibliotecas MediaPipe e OpenCV. Cada dedo da mão impressa tem marcações de cada uma de suas articulações e, utilizando das bibliotecas citadas, podemos saber qual dedo está aberto ou fechado.
+Refere-se à parte de leitura da movimentação da mão do usuário. Essa interpretação dos movimentos é realizada na linguagem de programação Python, utilizando as bibliotecas MediaPipe e OpenCV. Cada dedo da mão impressa tem marcações de cada uma de suas articulações e, utilizando das bibliotecas citadas, é possível saber qual dedo está aberto ou fechado.
 
 <img width="500" heigth="500" src="https://github.com/erufes/mao-mimica/blob/main/forREAD_ME/imagens/hand_landmarks.png">
 
@@ -37,9 +37,9 @@ Consiste na movimentação da mão impressa em 3D. Junto de um arduino uno e ser
 
 ## 📚 Libs Usadas
 ### Open CV <img loading="lazy" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/opencv/opencv-original.svg" width="25" height="25"/>
-É uma biblioteca de programação, de código aberto, e inicialmente desenvolvida pela Intel com o objetivo de tornar a visão computacional mais acessível a desenvolvedores e hobistas. Atualmente possui mais de 500 funções, pode ser utilizada em diversas linguagens de programação (C++, Python, Ruby, Java…) e é usada para diversos tipos de análise em imagens e vídeos, como detecção, tracking e reconhecimento facial, edição de fotos e vídeos, detecção e análise de textos, etc. Usaremos para a manipulação da webcam e para a identificação da mão.
+É uma biblioteca de programação, de código aberto, e inicialmente desenvolvida pela Intel com o objetivo de tornar a visão computacional mais acessível a desenvolvedores e hobistas. Atualmente possui mais de 500 funções, pode ser utilizada em diversas linguagens de programação (C++, Python, Ruby, Java…) e é usada para diversos tipos de análise em imagens e vídeos, como detecção, tracking e reconhecimento facial, edição de fotos e vídeos, detecção e análise de textos, etc. É utilizada no projeto para a manipulação da webcam e para a identificação da mão.
 ### MediaPipe <img width="25" heigth="25" src="https://github.com/erufes/mao-mimica/blob/main/forREAD_ME/imagens/mediaPipeLogo.png">
-É uma plataforma de código aberto mantida pelo Google, que oferece um conjunto abrangente de ferramentas, APIs e modelos pré-treinados que facilitam a construção de aplicações para tarefas como estimativa de pose, detecção de objetos, reconhecimento facial, entre outras. Usaremos para identificar cada articulação da mão, sendo possível saber qual dedo está levantado ou abaixado.
+É uma plataforma de código aberto mantida pelo Google, que oferece um conjunto abrangente de ferramentas, APIs e modelos pré-treinados que facilitam a construção de aplicações para tarefas como estimativa de pose, detecção de objetos, reconhecimento facial, entre outras. No projeto, é utilizada para identificar cada articulação da mão, sendo possível saber qual dedo está levantado ou abaixado.
 
 ## 🏗️ Estrutura
 ### Arduino <img loading="lazy" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/arduino/arduino-original.svg" width="25" height="25"/>
@@ -48,13 +48,13 @@ Consiste na movimentação da mão impressa em 3D. Junto de um arduino uno e ser
 <img width="200" heigth="200" src="https://github.com/erufes/mao-mimica/blob/main/forREAD_ME/imagens/arduinoUno.png">
 
 ### Modelo da mão 3D InMoov
-O modelo 3D da mão pegamos do InMoov, projeto pessoal do escultor e designer francês Gael Langevin, iniciado em janeiro de 2012 como a primeira mão protética de código aberto. Esse projeto deu origem a iniciativas como Bionico, E-Nable e muitas outras. O InMoov é o primeiro robô em tamanho real impresso em 3D de código aberto. Reproduzível em qualquer impressora 3D doméstica com uma área de 12x12x12 cm, foi concebido como uma plataforma de desenvolvimento para universidades, laboratórios, entusiastas, mas, acima de tudo, para makers. O modelo está disponível no site InMoov Mão e Antebraço.
+O modelo 3D da mão é do InMoov, projeto pessoal do escultor e designer francês Gael Langevin, iniciado em janeiro de 2012 como a primeira mão protética de código aberto. Esse projeto deu origem a iniciativas como Bionico, E-Nable e muitas outras. O InMoov é o primeiro robô em tamanho real impresso em 3D de código aberto. Reproduzível em qualquer impressora 3D doméstica com uma área de 12x12x12 cm, foi concebido como uma plataforma de desenvolvimento para universidades, laboratórios, entusiastas, mas, acima de tudo, para makers. O modelo está disponível no site [InMoov Mão e Antebraço](https://inmoov.fr/hand-and-forarm/).
 
 ### WebCam
-Precisaremos da webcam conectada a um computador, ou notebook, para podermos capturar os movimentos da mão do usuário e replicá-los na mão mímica. Usaremos a webcam HD C270 da Logitech.
+Precisa de uma webcam conectada a um computador, ou notebook, para poder capturar os movimentos da mão do usuário e replicá-los na mão mímica. No projeto, foi usada a webcam HD C270 da Logitech.
 
 ### Servo Motores
-Cada dedo precisa estar conectado por fios (usamos linha de pesca por ser mais resistente) a um servo-motor para ser capaz de replicar os movimentos captados pela câmera. Estão sendo usados 5 servo motores MG996R 180° Tower Pro. Eles só são capazes de girar em 180°, que é o necessário para fazer os movimentos de abrir ou fechar os dedos. Na foto abaixo, é possível observar como os motores estão dentro do antebraço.
+Cada dedo precisa estar conectado por fios (foi usada linha de pesca por ser mais resistente) a um servo-motor para ser capaz de replicar os movimentos captados pela câmera. Estão sendo usados 5 servo motores MG996R 180° Tower Pro. Eles só são capazes de girar em 180°, que é o necessário para fazer os movimentos de abrir ou fechar os dedos. Na foto abaixo, é possível observar como os motores estão dentro do antebraço.
 
 <img width="200" heigth="200" src="https://github.com/erufes/mao-mimica/blob/main/forREAD_ME/imagens/servoMotor.png">
  
