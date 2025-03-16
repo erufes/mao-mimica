@@ -71,7 +71,7 @@ Cada dedo precisa estar conectado por fios (foi usada linha de pesca por ser mai
 - Nos arquivos `Jogo.py` e `MaoMimica.py`, insira na linha 20 e 13, respectivamente, a porta serial em que o Arduino está conectado ao computador. A porta serial pode ser identificada ao enviar o código `main.cpp` para o Arduino pelo Arduino IDE.
 - É necessário uma fonte de alimentação de 5 a 7,2 volts para energizar os servomotores. Conecte o GND ao jumper escuro e a fonte ao jumper claro.
 - Conecte uma webcam ao computador. Nos arquivos `Jogo.py` e `MaoMimica.py`, nas linhas 78 e 21, respectivamente, é possível configurar a câmera a ser utilizada. O valor `0` dentro dos parênteses indica a primeira opção de captura de vídeo disponível no computador.
-- 
+
 Após realizar todas as configurações, execute o projeto digitando o seguinte comando no terminal:
 
 ```python3 main.py```
