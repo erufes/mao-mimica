@@ -66,7 +66,12 @@ Cada dedo precisa estar conectado por fios (usamos linha de pesca por ser mais r
 ```pip install pyserial```
 
 ## ☝️🤓 Instruções
-As bibliotecas descritas no tópico anterior devem ser baixadas pelo terminal. Além disso, python também deve estar presente na máquina. O código 'main.cpp' localizado na pasta 'src/hardware' deve ser mandado para o arduino. Usamos o Arduino IDE para fazer o upload do código no arduino, sendo que precisamos baixar a biblioteca 'Servo.h' dentro do próprio Arduino IDE. No código 'Jogo.py' e 'MaoMimica.py' precisa inserir nas linhas 20 e 13 em qual porta serial do computador o arduino está conectado (nós descobrimos a porta serial ao mandar o código 'main.cpp' para o arduino pelo Arduino IDE). É preciso uma fonte de 5 a 7,2 volts para energizar o circuito dos servo motores, sendo que o GND conecta no jumper escuro e a fonte conecta no jumper claro. Além disso, precisa de uma webcam conectada. Nos códigos 'Jogo.py' e 'MaoMimica.py', nas linhas 78 e 21, é possível configurar a câmera do computador nos parêntes, sendo que 0 é quando deseja usar a primeira opção de captura de vídeo do computador. Dessa forma, para o código rodar é preciso enviar o comando abaixo no terminal:
+- As bibliotecas descritas no tópico anterior devem ser baixadas pelo terminal. Além disso, Python também deve estar presente na máquina.
+- O código 'main.cpp' localizado na pasta 'src/hardware' deve ser mandado para o arduino. Usamos o Arduino IDE para fazer o upload do código no arduino, sendo que precisamos baixar a biblioteca 'Servo.h' dentro do próprio Arduino IDE.
+- No código 'Jogo.py' e 'MaoMimica.py' precisa inserir nas linhas 20 e 13 em qual porta serial do computador o arduino está conectado (nós descobrimos a porta serial ao mandar o código 'main.cpp' para o arduino pelo Arduino IDE).
+- É preciso uma fonte de 5 a 7,2 volts para energizar o circuito dos servo motores, sendo que o GND conecta no jumper escuro e a fonte conecta no jumper claro.
+- Além disso, precisa de uma webcam conectada. Nos códigos 'Jogo.py' e 'MaoMimica.py', nas linhas 78 e 21, é possível configurar a câmera do computador nos parêntes, sendo que 0 é quando deseja usar a primeira opção de captura de vídeo do computador.
+  Dessa forma, para o código rodar é preciso enviar o comando abaixo no terminal:
 
 ```python3 main.py```
 
