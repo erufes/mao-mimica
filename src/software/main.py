@@ -1,11 +1,9 @@
-
 import tkinter as tk
 import cv2
 import time
 from tkinter import messagebox
 
 from classes_menu.Menu import Menu
-
 
 menu = Menu()
 

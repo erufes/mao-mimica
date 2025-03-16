@@ -1,4 +1,3 @@
-
 import tkinter as tk
 import cv2 as openCv
 import time

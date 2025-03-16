@@ -1,4 +1,3 @@
-
 import tkinter as tk
 import cv2 as openCv
 import time
@@ -31,6 +30,7 @@ class Jogo:
         self.tesoura = np.array([0, 4, 4, 0, 0])
 
 
+    # Realiza a partida de Pedra, Papel e Tesoura
     def jogar(self, janela, label, segundos, label_resultado, btn_continuar, btn_iniciar, label_instrucao):
         btn_iniciar.pack_forget()  # Esconde o botão iniciar
         label_instrucao.config(text="")  # Remove "Pronto para iniciar?"
@@ -74,6 +74,7 @@ class Jogo:
                 btn_continuar.pack(pady=10)
 
 
+    # Realiza a visão computadional do modo de jogo
     def visaoJogar(self):
         camera = openCv.VideoCapture(0)
         camera.set(3,640)
@@ -110,6 +111,7 @@ class Jogo:
         return estadosDedos
 
 
+    # Realiza uma rodada da partida
     def rodada(self, label_resultado, btn_continuar):
         self.cont_rodada += 1
 
@@ -187,7 +189,7 @@ class Jogo:
         return np.all(np.abs(array1 - array2) <= tolerancia)
 
     
-    # 
+    # Exibe o menu do jogo Pedra, Papel e tesoura
     def menuJogo(self, janela):
         for widget in janela.winfo_children():
                     widget.destroy()
