@@ -66,6 +66,9 @@ Cada dedo precisa estar conectado por fios (usamos linha de pesca por ser mais r
 ```pip install pyserial```
 
 ## ☝️🤓 Instruções
+As bibliotecas descritas no tópico anterior devem ser baixadas pelo terminal. Além disso, python também deve estar presente na máquina. O código 'main.cpp' localizado na pasta 'src/hardware' deve ser mandado para o arduino. Usamos o Arduino IDE para fazer o upload do código no arduino, sendo que precisamos baixar a biblioteca 'Servo.h' dentro do próprio Arduino IDE. No código 'Jogo.py' e 'MaoMimica.py' precisa inserir nas linhas 20 e 13 em qual porta serial do computador o arduino está conectado (nós descobrimos a porta serial ao mandar o código 'main.cpp' para o arduino pelo Arduino IDE). É preciso uma fonte de 5 a 7,2 volts para energizar o circuito dos servo motores, sendo que o GND conecta no jumper escuro e a fonte conecta no jumper claro. Além disso, precisa de uma webcam conectada. Nos códigos 'Jogo.py' e 'MaoMimica.py', nas linhas 78 e 21, é possível configurar a câmera do computador nos parêntes, sendo que 0 é quando deseja usar a primeira opção de captura de vídeo do computador. Dessa forma, para o código rodar é preciso enviar o comando abaixo no terminal:
+
+```python3 main.py```
 
 ## 👩‍💻 Desenvolvedoras
 | [<img loading="lazy" src="https://avatars.githubusercontent.com/u/136736744?v=4" width=115><br><sub>Diana Mello Rosi</sub>](https://github.com/dianamross) |  [<img loading="lazy" src="https://avatars.githubusercontent.com/u/136653897?v=4" width=115><br><sub>Elisa Muller</sub>](https://github.com/BeWSM) |  [<img loading="lazy" src="https://avatars.githubusercontent.com/u/149831641?v=4" width=115><br><sub>Rafaela Capovilla</sub>](https://github.com/rafacpovilla) |  [<img loading="lazy" src="https://avatars.githubusercontent.com/u/149822230?v=4" width=115><br><sub>Rafaela Fernanda</sub>](https://github.com/rafaxxix) |
