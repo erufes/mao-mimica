@@ -27,7 +27,6 @@ class MaoMimica:
                 estadosModificado[0] = 2
                 print("teve que abrir o polegar ate o meio termo antes de abrir o indicador")
             mensagem = f"${''.join(map(str, estadosModificado))}"
-            print(f"Enviando para Arduino: {mensagem}")
 
             # Enviando para o Arduino via Serial
             arduino.write(mensagem.encode())
@@ -64,6 +63,7 @@ class MaoMimica:
                     if pontos:
                         mao = Mao(pontos)
                         estadosDedos = mao.analisarDedosMao()
+                        print(self.estadosDedosAnterior)
 
                         if self.estadosDedosAnterior[0] != -1:
                             # Ele verifica se eh o primeiro movimento que a mão esta fazendo, se nao for...
