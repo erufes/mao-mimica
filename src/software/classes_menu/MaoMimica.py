@@ -15,22 +15,16 @@ class MaoMimica:
         self.estadosDedosAnterior = [-1, -1, -1, -1, -1]
 
     
-    def verificaEstadosMao(self, estadosDedos, arduino):
+    def verificaEstadosMao(self, estadosDedos):
         if (((self.estadosDedosAnterior[0] == 0) or (self.estadosDedosAnterior[0] == 1)) and 
             ((self.estadosDedosAnterior[1] == 0) or (self.estadosDedosAnterior[1] == 1))) :
-            estadosModificado = estadosDedos
             print("entrou aqui")
             if (estadosDedos[0] != 0 and estadosDedos[0] != 1):
-                estadosModificado[1] = 2
+                estadosDedos[1] = 2
                 print("teve que abrir o indicador ate o meio termo antes de abrir o polegar")
             elif (estadosDedos[1] != 0 and estadosDedos[1] != 1):
-                estadosModificado[0] = 2
+                estadosDedos[0] = 2
                 print("teve que abrir o polegar ate o meio termo antes de abrir o indicador")
-            mensagem = f"${''.join(map(str, estadosModificado))}"
-
-            # Enviando para o Arduino via Serial
-            arduino.write(mensagem.encode())
-
 
     def imitar(self):
         messagebox.showinfo("Instrução", "Movimente sua mão para enviar comandos ao Arduino.\nPressione 'E' para encerrar.")
@@ -72,14 +66,14 @@ class MaoMimica:
                             # Por exemplo, quando a pessoa quer levantar o indicador mas o polegar também está abaixado, e vice-versa
                             # (aconteceu muito na amostra de pic e toda vez tem que abrir o antebraço pra acertar o fio)
                             # Ai no caso essa função verificaria e abriria um pouco o dedo que está travando
-                            self.verificaEstadosMao(estadosDedos, arduino)
+                            self.verificaEstadosMao(estadosDedos)
 
                         mensagem = f"${''.join(map(str, estadosDedos))}"
                         print(f"Enviando para Arduino: {mensagem}")
 
                         # Enviando para o Arduino via Serial
                         arduino.write(mensagem.encode())
-                        self.estadosDedosAnterior = estadosDedos
+                        self.estadosDedosAnterior = estadosDedos.copy()
 
             openCv.imshow('Imagem', imagem)
             key = openCv.waitKey(1) & 0xFF
